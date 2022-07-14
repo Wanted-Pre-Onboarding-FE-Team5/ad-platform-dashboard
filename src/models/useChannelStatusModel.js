@@ -12,13 +12,8 @@ export const useChannelStatusModel = () => {
     updateChannelStatus(response);
   };
 
-  // const patchMovieById = async (id, data) => {
-  //   return await movieRequest.patch(id, data);
-  // };
-
   return {
     channelStatus,
     getChannelStatus,
-    // patchMovieById,
   };
 };

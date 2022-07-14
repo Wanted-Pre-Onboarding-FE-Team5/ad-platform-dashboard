@@ -12,13 +12,8 @@ export const useTotalAdStatusModel = () => {
     updateTotalAdStatus(response);
   };
 
-  // const patchMovieById = async (id, data) => {
-  //   return await movieRequest.patch(id, data);
-  // };
-
   return {
     totalAdStatus,
     getTotalAdStatus,
-    // patchMovieById,
   };
 };
