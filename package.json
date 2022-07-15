@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "ad-platform-dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +13,7 @@
     "@types/node": "^16.11.44",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
     "json-server": "^0.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "json-server --watch ./public/database/database.json --port 8000"
   },
   "eslintConfig": {
     "extends": [

@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useTotalAdStatusModel } from "../src/models/useTotalAdStatusModel";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+type TotalReportDataType = {
+  //total-report 데이터 타입
+  imp: number;
+  click: number;
+  cost: number;
+  conv: number;
+  convValue: number;
+  ctr: number;
+  cvr: number;
+  cpc: number;
+  cpa: number;
+  roas: number;
+  date: string;
+};
+
+const App = () => {
+  const { totalAdStatus, getTotalAdStatus } = useTotalAdStatusModel();
+  const [dailyAdStatus, setDailyAdStatus] = React.useState <Array<TotalReportDataType>|null>([]); 
+
+  React.useEffect(() => {
+    getTotalAdStatus();
+    setDailyAdStatus(totalAdStatus === null? [] : totalAdStatus["daily"]);
+  }, []);
+
+  console.log(totalAdStatus === null ? [] : totalAdStatus["daily"]);
+
+  const dailyAdStatusList = dailyAdStatus?.map(
+    (dailyAd, index:number) => {
+      return (
+        <ul key={index}>
+          <li key={dailyAd.imp}>imp: {dailyAd.imp}</li>
+          <li key={dailyAd.click}>click: {dailyAd.click}</li>
+          <li key={dailyAd.cost}>cost: {dailyAd.cost}</li>
+          <li key={dailyAd.conv}>conv: {dailyAd.conv}</li>
+          <li key={dailyAd.convValue}>convValue: {dailyAd.convValue}</li>
+          <li key={dailyAd.ctr}>ctr: {dailyAd.ctr}</li>
+          <li key={dailyAd.cvr}>cvr: {dailyAd.cvr}</li>
+          <li key={dailyAd.cpc}>cpc: {dailyAd.cpc}</li>
+          <li key={dailyAd.cpa}>cpa: {dailyAd.cpa}</li>
+          <li key={dailyAd.roas}>roas: {dailyAd.roas}</li>
+          <li key={dailyAd.date}>date: {dailyAd.date}</li>
+        </ul>
+      );
+    }
+  ); 
+
+  return <div>{dailyAdStatusList}</div>;
+};
 
 export default App;
