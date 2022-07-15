@@ -1,13 +1,13 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
 
-type Service = AxiosInstance;
+type Axios = AxiosInstance;
 
 interface HttpRequestType {
-  get: (url: string) => Promise<AxiosResponse<any, any>>
+  get: (url: string) => Promise<AxiosResponse<any, any>>;
 }
 
 export class HttpRequest implements HttpRequestType {
-  constructor(private service: Service) {
+  constructor(private service: Axios) {
     this.service = service;
   }
   get(url: string) {
