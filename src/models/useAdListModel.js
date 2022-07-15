@@ -1,5 +1,5 @@
 import React from 'react';
-import { adListRequest } from '../services/adListService';
+import { adListRequest } from '../axiosFactory/adListAxios';
 export const useAdListModel = () => {
   const [adList, setAdList] = React.useState(null);
 

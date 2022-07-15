@@ -1,5 +1,5 @@
 import React from 'react';
-import { channelStatusRequest } from '../services/channelStatusService';
+import { channelStatusRequest } from '../axiosFactory/channelStatusAxios';
 export const useChannelStatusModel = () => {
   const [channelStatus, setChannelStatus] = React.useState(null);
 

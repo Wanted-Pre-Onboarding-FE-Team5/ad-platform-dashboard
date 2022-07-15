@@ -1,8 +1,6 @@
 import React from "react";
 import { useTotalAdStatusModel } from "../src/models/useTotalAdStatusModel";
 
-//렌더링 되는데 이상하게 새로고침하면 사라짐. 안보임..? useEffect 로직 고쳐야될거 같음...
-
 type TotalReportDataType = {
   //total-report 데이터 타입
   imp: number;
@@ -30,7 +28,7 @@ const App = () => {
   console.log(totalAdStatus === null ? [] : totalAdStatus["daily"]);
 
   const dailyAdStatusList = dailyAdStatus?.map(
-    (dailyAd , index:number) => {
+    (dailyAd, index:number) => {
       return (
         <ul key={index}>
           <li key={dailyAd.imp}>imp: {dailyAd.imp}</li>

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import React from "react";
-import { totalAdStatusRequest } from "../services/totalAdStatusService";
+import { totalAdStatusRequest } from "../axiosFactory/totalAdStatusAxios";
 
 export const useTotalAdStatusModel = () => {
   const [totalAdStatus, setTotalAdStatus] = React.useState(null);
