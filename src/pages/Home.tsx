@@ -1,4 +1,3 @@
-//삭제 예정
 import React from "react";
 
 const Home = () => {

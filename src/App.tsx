@@ -48,7 +48,7 @@ const App = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      {/* header 들어갈 자리 */}
+      {/* header 들어갈 자리 - 본문이랑 겹치는거 해결 필요*/}
       <AppBar
         position="fixed"
         sx={{

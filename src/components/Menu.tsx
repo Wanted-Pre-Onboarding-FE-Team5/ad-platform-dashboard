@@ -13,6 +13,7 @@ type MenuPropsType = {
 
 const Menu = (props: MenuPropsType) => {
   const { menuWidth, showMenu } = props;
+  
   return (
     <Drawer
       sx={{
