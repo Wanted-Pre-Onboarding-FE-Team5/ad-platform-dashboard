@@ -18,17 +18,15 @@ type TotalReportDataType = {
 
 const App = () => {
   const { totalAdStatus, getTotalAdStatus } = useTotalAdStatusModel();
-  const [dailyAdStatus, setDailyAdStatus] = React.useState <Array<TotalReportDataType>|null>([]); 
 
   React.useEffect(() => {
     getTotalAdStatus();
-    setDailyAdStatus(totalAdStatus === null? [] : totalAdStatus["daily"]);
   }, []);
 
   console.log(totalAdStatus === null ? [] : totalAdStatus["daily"]);
 
-  const dailyAdStatusList = dailyAdStatus?.map(
-    (dailyAd, index:number) => {
+  const dailyAdStatusList : JSX.Element[] = (totalAdStatus === null ? [] : totalAdStatus["daily"])?.map(
+    (dailyAd : TotalReportDataType, index:number) => {
       return (
         <ul key={index}>
           <li key={dailyAd.imp}>imp: {dailyAd.imp}</li>
