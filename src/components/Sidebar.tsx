@@ -4,20 +4,17 @@ import { List } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { Button } from "@mui/material";
-// import { Typography } from "@mui/material";
 
-type MenuPropsType = {
+type menuWidthType = {
   menuWidth: number;
-  showMenu: string;
 };
 
-const Menu = (props: MenuPropsType) => {
-  const { menuWidth, showMenu } = props;
+const Sidebar = (props : menuWidthType) => {
+  const { menuWidth } = props;
   
   return (
     <Drawer
       sx={{
-        display: showMenu,
         width: menuWidth,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
@@ -66,4 +63,4 @@ const Menu = (props: MenuPropsType) => {
   );
 };
 
-export default Menu;
+export default Sidebar;
