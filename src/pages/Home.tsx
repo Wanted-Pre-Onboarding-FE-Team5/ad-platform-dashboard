@@ -13,13 +13,13 @@ import {
 } from "@mui/material";
 import Sidebar from "../components/Sidebar";
 
-//isOpenMobileMenu가 true인 상태에서 480px 이상 커지면 초기화하기
-
 const menuWidth = 240; //-> type? enum?
 type ChildrenType = {
   children: ReactNode;
 };
 
+//isOpenMobileMenu가 true인 상태에서 480px 이상 커지면 초기화하기
+//header 부분 z-index 수정. 자꾸 다른 컴포넌트 밑으로 들어감
 const Home = ({ children }: ChildrenType) => {
   const isMobile: boolean = useMediaQuery("(max-width:480px)");
   const [isOpenMobileMenu, setIsOpenMobileMenu] =
@@ -44,9 +44,8 @@ const Home = ({ children }: ChildrenType) => {
           alignItems: "center",
           backgroundColor: "blue",
         }}
-      />
-
-      {/* 햄버거 or 닫기 */}
+      >
+      {/* 햄버거 or 닫기 */} 
       {isMobile ? (
         <IconButton
           sx={{
@@ -55,7 +54,7 @@ const Home = ({ children }: ChildrenType) => {
             left: '1rem',
             width: "2rem",
             height: "2rem",
-            zIndex: 10,
+            zIndex: 20,
             color: "black",
           }}
           onClick={handleClick}
@@ -63,21 +62,21 @@ const Home = ({ children }: ChildrenType) => {
           {isOpenMobileMenu ? <CloseIcon /> : <MenuIcon />}
         </IconButton>
       ) : null}
-
-      {children}
+      </Box>
       
       {/* 모바일 메뉴 */}
       {isMobile && isOpenMobileMenu ? (
         <Container
           sx={{
             position: "absolute",
-            top: 0,
+            top: `4rem`,
             left: 0,
             width: "100%",
-            height: "100vh", //높이 어떻게..?
+            height: "auto", //높이 어떻게..?
             display: "flex",
             alignItems: "center",
-            backgroundColor: "white"
+            backgroundColor: "white",
+            zIndex: 10
           }}
         >
           <List sx={{ width: "100%" }}>
@@ -99,6 +98,9 @@ const Home = ({ children }: ChildrenType) => {
           </List>
         </Container>
       ) : null}
+      
+      {children}
+
     </Box>
   );
 };

@@ -5,7 +5,7 @@ import ChannelStatus from "../components/ChannelStatus";
 
 const Dashboard = () => {
   return (
-    <Box sx={{ p: 3 }}>
+    <Box>
       <Toolbar>대시 보드</Toolbar>
       <TotalAdStatus />
       <ChannelStatus />

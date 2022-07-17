@@ -1,6 +1,5 @@
 {
-  "total-report": {
-    "daily": [
+  "total-report": [
       {
         "imp": 51479,
         "click": 559,
@@ -1029,7 +1028,7 @@
         "date": "2022-04-20"
       }
     ]
-  },
+  ,
 
   "channel-report": {
     "daily": [
