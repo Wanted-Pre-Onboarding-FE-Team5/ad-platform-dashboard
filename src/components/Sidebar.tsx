@@ -4,14 +4,15 @@ import { List } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 type menuWidthType = {
   menuWidth: number;
 };
 
-const Sidebar = (props : menuWidthType) => {
+const Sidebar = (props: menuWidthType) => {
   const { menuWidth } = props;
-  
+
   return (
     <Drawer
       sx={{
@@ -43,20 +44,31 @@ const Sidebar = (props : menuWidthType) => {
       </List>
       <List>
         <ListItem sx={{ fontSize: "12px" }}>광고센터</ListItem>
-        <List sx={{ display: "flex", flexDirection: "column" }}>
-          {["대시보드", "광고관리"].map((text, index) => (
-            <ListItem key={index}>
-              <Button
-                sx={{
-                  border: "1px solid black",
-                  height: "3rem",
-                  width: "100%",
-                }}
-              >
-                {text}
-              </Button>
+        <List >
+            <ListItem sx={{ display: "flex", flexDirection: "column" }}>
+              <Link to="/" >
+                <Button
+                  sx={{
+                    border: "1px solid black",
+                    height: "3rem",
+                    width: "100%",
+                  }}
+                >
+                  대시보드
+                </Button>
+              </Link>
+              <Link to="/ad" >
+                <Button
+                  sx={{
+                    border: "1px solid black",
+                    height: "3rem",
+                    width: "100%",
+                  }}
+                >
+                  광고관리
+                </Button>
+              </Link>
             </ListItem>
-          ))}
         </List>
       </List>
     </Drawer>
