@@ -1,17 +1,25 @@
-import { AxiosResponse } from 'axios';
-import { TotalAdStatusType } from '../types/totalAdStatusType';
-import { TotalAdStatusServiceType } from '../types/totalAdStatusType'
+import { AxiosResponse } from "axios";
+import { TotalAdStatusType } from "../types/totalAdStatusType";
+import { TotalAdStatusServiceType } from "../types/totalAdStatusType";
 
 interface HttpRequestType {
-  get: (url: string) => Promise<AxiosResponse<TotalAdStatusType[]>>
+  get: (url: string) => Promise<AxiosResponse<TotalAdStatusType[]>>;
 }
 
 export class HttpRequest implements HttpRequestType {
-  constructor(private service : TotalAdStatusServiceType) {
+  constructor(private service: TotalAdStatusServiceType) {
     this.service = service;
   }
+  // get(url: string) {
+  //   return this.service.get<TotalAdStatusType[]>(url);
+  // }
+
   get(url: string) {
-    return this.service.get<TotalAdStatusType[]>(url);
+    return this.service.get(url);
+  }
+
+  put(url: string, data: any) {
+    return this.service.put(url, data);
   }
 }
 

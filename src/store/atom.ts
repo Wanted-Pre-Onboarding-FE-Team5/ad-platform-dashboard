@@ -15,9 +15,9 @@ export const progressState = atom({
   default: "active",
 });
 
-const adListSelector = selector({
+export const adListSelector = selector({
   key: "adListSelector",
-  get: async () => {
+  get: async ({ get }) => {
     const response: AxiosResponse<any, any> = await adListRequest.get("");
     return response.data;
   },
@@ -25,7 +25,7 @@ const adListSelector = selector({
 
 export const adListState = atom({
   key: "adListState",
-  default: adListSelector,
+  default: [],
 });
 
 const channelStateSelector = selector({
@@ -46,7 +46,8 @@ export const channelState = atom({
 const totalAdStatusSelector = selector({
   key: "totalAdStatusSelector",
   get: async () => {
-    const response : AxiosResponse<TotalAdStatusType[]> = await totalAdStatusRequest.get("");
+    const response: AxiosResponse<TotalAdStatusType[]> =
+      await totalAdStatusRequest.get("");
     return response.data;
   },
 });
