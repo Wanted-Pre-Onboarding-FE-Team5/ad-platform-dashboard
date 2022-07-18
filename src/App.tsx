@@ -1,20 +1,17 @@
-<<<<<<< HEAD
 import React from 'react';
+import { CssBaseline } from '@mui/material';
+import { AppBar } from '@mui/material';
+import { Box } from '@mui/material';
+import { Container } from '@mui/material';
+import { Toolbar } from '@mui/material';
 import { useTotalAdStatusModel } from '../src/models/useTotalAdStatusModel';
-=======
-import React from "react";
-import { CssBaseline } from "@mui/material";
-import { AppBar } from "@mui/material";
-import { Box } from "@mui/material";
-import { Container } from "@mui/material";
-import { Toolbar } from "@mui/material";
-import { useTotalAdStatusModel } from "../src/models/useTotalAdStatusModel";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Menu from "./components/Menu";
-import HamburgerMenu from "./components/HamburgerMenu";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Menu from './components/Menu';
+import HamburgerMenu from './components/HamburgerMenu';
+import ChannelStatus from './components/ChannelStatus';
+import Header from './components/Header';
 
 const menuWidth = 240;
->>>>>>> dev
 
 type TotalReportDataType = {
   //total-report 데이터 타입
@@ -32,80 +29,39 @@ type TotalReportDataType = {
 };
 
 const App = () => {
-  const mobile: boolean = useMediaQuery("(max-width:480px)");
-  const showMenu: string = mobile === true ? "none" : "block";
+  const mobile: boolean = useMediaQuery('(max-width:480px)');
+  const showMenu: string = mobile === true ? 'none' : 'block';
   const { totalAdStatus, getTotalAdStatus } = useTotalAdStatusModel();
 
   React.useEffect(() => {
     getTotalAdStatus();
   }, []);
 
-<<<<<<< HEAD
-  console.log(totalAdStatus === null ? [] : totalAdStatus['daily']);
-
-  const dailyAdStatusList: JSX.Element[] = (totalAdStatus === null ? [] : totalAdStatus['daily'])?.map((dailyAd: TotalReportDataType, index: number) => {
-    return (
-      <ul key={index}>
-        <li key={dailyAd.imp}>imp: {dailyAd.imp}</li>
-        <li key={dailyAd.click}>click: {dailyAd.click}</li>
-        <li key={dailyAd.cost}>cost: {dailyAd.cost}</li>
-        <li key={dailyAd.conv}>conv: {dailyAd.conv}</li>
-        <li key={dailyAd.convValue}>convValue: {dailyAd.convValue}</li>
-        <li key={dailyAd.ctr}>ctr: {dailyAd.ctr}</li>
-        <li key={dailyAd.cvr}>cvr: {dailyAd.cvr}</li>
-        <li key={dailyAd.cpc}>cpc: {dailyAd.cpc}</li>
-        <li key={dailyAd.cpa}>cpa: {dailyAd.cpa}</li>
-        <li key={dailyAd.roas}>roas: {dailyAd.roas}</li>
-        <li key={dailyAd.date}>date: {dailyAd.date}</li>
-      </ul>
-    );
-  });
-=======
   //console.log(totalAdStatus === null ? [] : totalAdStatus["daily"]);
 
-  const dailyAdStatusList: TotalReportDataType[] = Object.values(
-    totalAdStatus === null ? [] : totalAdStatus["daily"]
-  );
->>>>>>> dev
+  const dailyAdStatusList: TotalReportDataType[] = Object.values(totalAdStatus === null ? [] : totalAdStatus['daily']);
 
   // for (const value of dailyAdStatusList) {
   //   console.log(value);
   // }
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      {/* header 들어갈 자리 - 본문이랑 겹치는거 해결 필요*/}
-      <AppBar
-        position="fixed"
-        sx={{
-          width: `calc(100% - ${mobile ? 0 : menuWidth}px)`,
-          height: `4rem`,
-          ml: `${mobile ? 0 : menuWidth}px`,
-        }}
-      >
-        <Toolbar>{mobile ? <HamburgerMenu /> : null}</Toolbar>
-      </AppBar>
-
-      {/* 메뉴 들어갈 자리 */}
+      <Header />
+      <Toolbar>{mobile ? <HamburgerMenu /> : null}</Toolbar>
       <Menu menuWidth={menuWidth} showMenu={showMenu} />
-    
-      <Box component="main" sx={{ flexGrow: 1, bgcolor: "#f5f5f5", p: 3 }}>
+
+      <Box component='main' sx={{ flexGrow: 1, bgcolor: '#f5f5f5', p: 3 }}>
         <Toolbar>대시 보드</Toolbar>
 
-        {/* 각자 맡은 컴포넌트 들어갈 자리 */}
-        <Box sx={{ p: 3, height: "1000px" }}>
-          <Container
-            sx={{ p: 3, bgcolor: "white", height: "90%", borderRadius: "30px" }}
-          >
-            \//page 들어갈 자리 : height를 임의로 지정한 상태
-          </Container>
+        <Box sx={{ p: 3, height: '1000px' }}>
+          <Container sx={{ p: 3, bgcolor: 'white', height: '60%', borderRadius: '30px' }}>통합 광고 현황</Container>
         </Box>
-        <Box sx={{ p: 3, height: "1000px" }}>
-          <Container
-            sx={{ p: 3, bgcolor: "white", height: "90%", borderRadius: "30px" }}
-          >
-            \//page 들어갈 자리 : height를 임의로 지정한 상태
+        <Box sx={{ p: 3, height: '1000px' }}>
+          <Container sx={{ p: 3, bgcolor: 'white', height: '60%', borderRadius: '30px' }}>
+            매체 현황
+            <ChannelStatus></ChannelStatus>
           </Container>
         </Box>
       </Box>
