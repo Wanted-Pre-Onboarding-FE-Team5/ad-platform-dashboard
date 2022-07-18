@@ -1,5 +1,5 @@
 export type AdListDataType = {
-  id: ?number;
+  id: number;
   adType: string;
   title: string;
   budget: number;

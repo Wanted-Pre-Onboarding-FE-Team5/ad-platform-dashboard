@@ -18,9 +18,15 @@ export const useAdListModel = () => {
     return await adListRequest.put(`/${id}`, data);
   };
 
+  const deleteAdList = async (id: number) => {
+    const response = await adListRequest.delete(`/${id}`);
+    updateAdList(response);
+  };
+
   return {
     adList,
     getAdList,
     putAdItemById,
+    deleteAdList,
   };
 };

@@ -17,10 +17,11 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { useAdListModel } from "../models/useAdListModel";
 
 export default function AdItem() {
   const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
-
+  const { deleteAdList } = useAdListModel();
   React.useEffect(() => {
     // getAdList();
     adListRequest.get("").then((response) => {
@@ -32,8 +33,13 @@ export default function AdItem() {
     console.log("수정클릭");
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (
+    params: number,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     console.log("삭제클릭");
+    console.log(params);
+    deleteAdList(params);
   };
 
   return (
@@ -103,7 +109,9 @@ export default function AdItem() {
               size="small"
               variant="outlined"
               color="warning"
-              onClick={handleDeleteClick}
+              onClick={(e) => {
+                handleDeleteClick(dailyAd.id, e);
+              }}
             >
               삭제하기
             </Button>
