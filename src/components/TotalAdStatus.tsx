@@ -29,8 +29,6 @@ const TotalAdStatus = () => {
   React.useEffect(()=>{
     setWeeklyData(calcWeeklySum(totalAdStatus, useWeeklyStatusCallback));
   },[totalAdStatus]);
-  
-  console.log(weeklyData);
 
   return (
     <Box sx={{ p: 3 }}>
