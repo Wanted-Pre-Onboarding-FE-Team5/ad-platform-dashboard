@@ -9,6 +9,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { grey } from '@mui/material/colors';
+
+const color = grey[500];
 
 interface HandleClickPropsType {
   (event: React.MouseEvent<HTMLButtonElement>): void;
@@ -44,19 +47,19 @@ const Header = (props: HeaderPropsType) => {
       ) : null}
 
       {/* 아이콘 */}
-      <Toolbar>
+      <Toolbar sx={{ backgroundColor: '#f5f5f5' }}>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-          <IconButton size='large' color='inherit'>
+          <IconButton size='large' sx={{ color: '#59656b' }}>
             <Badge>
               <MailIcon />
             </Badge>
           </IconButton>
-          <IconButton size='large' color='inherit'>
+          <IconButton size='large' sx={{ color: '#59656b' }}>
             <Badge>
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton size='large' edge='end' color='inherit'>
+          <IconButton size='large' edge='end' sx={{ color: '#59656b' }}>
             <AccountCircle />
           </IconButton>
         </Box>
