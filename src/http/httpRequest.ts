@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { AdListDataType } from "../models/types";
 import { TotalAdStatusType } from "../types/totalAdStatusType";
 import { TotalAdStatusServiceType } from "../types/totalAdStatusType";
 
@@ -11,7 +12,7 @@ export class HttpRequest implements HttpRequestType {
     this.service = service;
   }
   // get(url: string) {
-  //   return this.service.get<TotalAdStatusType[]>(url);
+  //   return this.service.get<TotalAdStatusType[]|AdListDataType[]>(url);
   // }
 
   get(url: string) {

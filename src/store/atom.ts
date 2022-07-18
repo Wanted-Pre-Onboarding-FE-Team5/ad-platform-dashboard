@@ -25,7 +25,7 @@ export const adListSelector = selector({
 
 export const adListState = atom({
   key: "adListState",
-  default: [],
+  default: adListSelector,
 });
 
 const channelStateSelector = selector({
