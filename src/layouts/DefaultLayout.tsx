@@ -1,9 +1,18 @@
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Box, CssBaseline, List, ListItem, Button, Container } from '@mui/material';
-import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
+
+import React from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {
+  Box,
+  CssBaseline,
+  List,
+  ListItem,
+  Button,
+  Container,
+} from "@mui/material";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+
 
 const menuWidth = 240; //-> type? enum?
 
@@ -11,8 +20,12 @@ const menuWidth = 240; //-> type? enum?
 //isOpenMobileMenu가 true인 상태에서 480px 이상 커지면 초기화하기
 //header 부분 z-index 수정. 자꾸 다른 컴포넌트 밑으로 들어감
 const DefaultLayout = () => {
-  const isMobile: boolean = useMediaQuery('(max-width:480px)');
-  const [isOpenMobileMenu, setIsOpenMobileMenu] = React.useState<boolean>(false);
+
+  const isMobile: boolean = useMediaQuery("(max-width:480px)");
+  const [isOpenMobileMenu, setIsOpenMobileMenu] =
+    React.useState<boolean>(false);
+  const navigate = useNavigate();
+
 
   const handleClick = (): void => {
     setIsOpenMobileMenu(!isOpenMobileMenu);
@@ -41,30 +54,33 @@ const DefaultLayout = () => {
             zIndex: 10,
           }}
         >
-          <List sx={{ width: '100%' }}>
-            <ListItem sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Link to='/'>
+
+          <List sx={{ width: "100%" }}>
+            <ListItem sx={{ display: "flex", flexDirection: "column" }}>
+
                 <Button
                   sx={{
                     border: '1px solid black',
                     height: '3rem',
                     width: '100%',
                   }}
+                  onClick={()=>navigate("/")}
                 >
                   대시보드
                 </Button>
-              </Link>
-              <Link to='/ad'>
+
                 <Button
                   sx={{
-                    border: '1px solid black',
-                    height: '3rem',
-                    width: '100%',
+                    border: "1px solid black",
+                    height: "3rem",
+                    width: "100%",
+                    mt:"1rem"
+
                   }}
+                  onClick={()=>navigate("/ad")}
                 >
                   광고관리
                 </Button>
-              </Link>
             </ListItem>
           </List>
         </Container>
