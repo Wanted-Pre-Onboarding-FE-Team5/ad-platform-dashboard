@@ -9,9 +9,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { grey } from '@mui/material/colors';
-
-const color = grey[500];
 
 interface HandleClickPropsType {
   (event: React.MouseEvent<HTMLButtonElement>): void;
@@ -39,6 +36,7 @@ const Header = (props: HeaderPropsType) => {
             width: '2rem',
             height: '2rem',
             zIndex: 20,
+            color: '#59656b',
           }}
           onClick={handleClick}
         >

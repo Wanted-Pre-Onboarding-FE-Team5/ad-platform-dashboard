@@ -1,27 +1,33 @@
 import React from 'react';
-//import { useChannelStatusModel } from '../models/useChannelStatusModel';
+import { Box, Container, Typography } from '@mui/material';
 import StackedBarChart from './StackedBarChart';
-import { Box } from '@mui/material';
-
-// type ChannelReportDataType = {
-//   // channel-report 데이터 타입
-//   channel: string;
-//   date: string;
-//   imp: number;
-//   click: number;
-//   cost: number;
-//   convValue: number;
-//   ctr: number;
-//   cvr: number;
-//   cpc: number;
-//   cpa: number;
-//   roas: number;
-// };
+import BasicTable from './BasicTable';
+import { useChannelStatusModel } from '../models/useChannelStatusModel';
+import { ChannelStatusType } from '../types/channelStatusType';
 
 const ChannelStatus = () => {
+  const { getChannelStatus } = useChannelStatusModel();
+
+  const [channelState, setChannelState] = React.useState<ChannelStatusType[]>();
+  React.useEffect(() => {
+    getChannelStatus('').then((data) => setChannelState(data));
+  }, []);
+  console.log(channelState);
+
   return (
-    <Box sx={{ width: '100%' }}>
-      <StackedBarChart />
+    <Box sx={{ p: 3 }}>
+      <Typography sx={{ mb: 3, fontWeight: 'bold' }}>매체 현황</Typography>
+      <Container
+        sx={{
+          bgcolor: 'white',
+          borderRadius: '20px',
+        }}
+      >
+        <Container sx={{ display: 'flex', justifyContent: 'center', p: 5, flexDirection: 'column' }}>
+          <StackedBarChart />
+          <BasicTable />
+        </Container>
+      </Container>
     </Box>
   );
 };

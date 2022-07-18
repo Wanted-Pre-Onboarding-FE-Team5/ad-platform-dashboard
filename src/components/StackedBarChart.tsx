@@ -1,5 +1,6 @@
 import React from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Container } from '@mui/material';
 
 const data = [
   {
@@ -48,10 +49,10 @@ const data = [
 
 const StackedBarChart = () => {
   return (
-    <ResponsiveContainer width='100%' height='100%'>
+    <Container sx={{ width: 'auto', height: 'auto' }}>
       <BarChart
-        width={500}
-        height={300}
+        width={900}
+        height={400}
         data={data}
         margin={{
           top: 20,
@@ -68,7 +69,7 @@ const StackedBarChart = () => {
         <Bar dataKey='pv' stackId='a' fill='#8884d8' />
         <Bar dataKey='uv' stackId='a' fill='#82ca9d' />
       </BarChart>
-    </ResponsiveContainer>
+    </Container>
   );
 };
 
