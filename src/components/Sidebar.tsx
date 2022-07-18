@@ -4,7 +4,7 @@ import { List } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type menuWidthType = {
   menuWidth: number;
@@ -12,6 +12,7 @@ type menuWidthType = {
 
 const Sidebar = (props: menuWidthType) => {
   const { menuWidth } = props;
+  const navigate = useNavigate();
 
   return (
     <Drawer
@@ -44,30 +45,29 @@ const Sidebar = (props: menuWidthType) => {
       </List>
       <List>
         <ListItem sx={{ fontSize: "12px" }}>광고센터</ListItem>
-        <List >
+        <List sx={{ width:"100%" }}>
             <ListItem sx={{ display: "flex", flexDirection: "column" }}>
-              <Link to="/" >
                 <Button
                   sx={{
                     border: "1px solid black",
                     height: "3rem",
                     width: "100%",
                   }}
+                  onClick={()=>navigate("/")}
                 >
                   대시보드
                 </Button>
-              </Link>
-              <Link to="/ad" >
                 <Button
                   sx={{
                     border: "1px solid black",
                     height: "3rem",
                     width: "100%",
+                    mt:"1rem"
                   }}
+                  onClick={()=>navigate("/ad")}
                 >
                   광고관리
                 </Button>
-              </Link>
             </ListItem>
         </List>
       </List>
