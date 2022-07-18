@@ -24,7 +24,7 @@ export default function AdItem() {
   const { deleteAdList, putAdItemById } = useAdListModel();
   React.useEffect(() => {
     // getAdList();
-    adListRequest.get("").then((response) => {
+    adListRequest.get_ad("").then((response) => {
       setAdList(response.data);
     });
   }, []);

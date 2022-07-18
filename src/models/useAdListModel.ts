@@ -10,7 +10,7 @@ export const useAdListModel = () => {
   };
 
   const getAdList = async () => {
-    const response = await adListRequest.get("");
+    const response = await adListRequest.get_ad("");
     updateAdList(response);
   };
 

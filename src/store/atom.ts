@@ -18,7 +18,7 @@ export const progressState = atom({
 export const adListSelector = selector({
   key: "adListSelector",
   get: async ({ get }) => {
-    const response: AxiosResponse<any, any> = await adListRequest.get("");
+    const response: AxiosResponse<any, any> = await adListRequest.get_ad("");
     return response.data;
   },
 });
@@ -31,7 +31,7 @@ export const adListState = atom({
 const channelStateSelector = selector({
   key: "channelStateSelector",
   get: async () => {
-    const response: AxiosResponse<any, any> = await channelStatusRequest.get(
+    const response: AxiosResponse<any, any> = await channelStatusRequest.get_channel(
       ""
     );
     return response.data;
@@ -47,7 +47,7 @@ const totalAdStatusSelector = selector({
   key: "totalAdStatusSelector",
   get: async () => {
     const response: AxiosResponse<TotalAdStatusType[]> =
-      await totalAdStatusRequest.get("");
+      await totalAdStatusRequest.get_total("");
     return response.data;
   },
 });

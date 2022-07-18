@@ -4,18 +4,23 @@ import { TotalAdStatusType } from "../types/totalAdStatusType";
 import { TotalAdStatusServiceType } from "../types/totalAdStatusType";
 
 interface HttpRequestType {
-  get: (url: string) => Promise<AxiosResponse<TotalAdStatusType[]>>;
+  get_total: (url: string) => Promise<AxiosResponse<TotalAdStatusType[]>>;
 }
 
 export class HttpRequest implements HttpRequestType {
   constructor(private service: TotalAdStatusServiceType) {
     this.service = service;
   }
-  // get(url: string) {
-  //   return this.service.get<TotalAdStatusType[]|AdListDataType[]>(url);
-  // }
 
-  get(url: string) {
+  get_total(url: string) {
+    return this.service.get<TotalAdStatusType[]>(url);
+  }
+
+  get_channel(url: string) {
+    return this.service.get(url);
+  }
+
+  get_ad(url: string) {
     return this.service.get(url);
   }
 
