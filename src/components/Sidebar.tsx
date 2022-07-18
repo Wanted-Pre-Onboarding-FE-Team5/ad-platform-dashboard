@@ -4,20 +4,18 @@ import { List } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { Button } from "@mui/material";
-// import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
-type MenuPropsType = {
+type menuWidthType = {
   menuWidth: number;
-  showMenu: string;
 };
 
-const Menu = (props: MenuPropsType) => {
-  const { menuWidth, showMenu } = props;
-  
+const Sidebar = (props: menuWidthType) => {
+  const { menuWidth } = props;
+
   return (
     <Drawer
       sx={{
-        display: showMenu,
         width: menuWidth,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
@@ -46,24 +44,35 @@ const Menu = (props: MenuPropsType) => {
       </List>
       <List>
         <ListItem sx={{ fontSize: "12px" }}>광고센터</ListItem>
-        <List sx={{ display: "flex", flexDirection: "column" }}>
-          {["대시보드", "광고관리"].map((text, index) => (
-            <ListItem key={index}>
-              <Button
-                sx={{
-                  border: "1px solid black",
-                  height: "3rem",
-                  width: "100%",
-                }}
-              >
-                {text}
-              </Button>
+        <List >
+            <ListItem sx={{ display: "flex", flexDirection: "column" }}>
+              <Link to="/" >
+                <Button
+                  sx={{
+                    border: "1px solid black",
+                    height: "3rem",
+                    width: "100%",
+                  }}
+                >
+                  대시보드
+                </Button>
+              </Link>
+              <Link to="/ad" >
+                <Button
+                  sx={{
+                    border: "1px solid black",
+                    height: "3rem",
+                    width: "100%",
+                  }}
+                >
+                  광고관리
+                </Button>
+              </Link>
             </ListItem>
-          ))}
         </List>
       </List>
     </Drawer>
   );
 };
 
-export default Menu;
+export default Sidebar;
