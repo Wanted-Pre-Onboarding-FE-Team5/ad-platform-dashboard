@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link  } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   Box,
@@ -21,6 +21,7 @@ const DefaultLayout = () => {
   const isMobile: boolean = useMediaQuery("(max-width:480px)");
   const [isOpenMobileMenu, setIsOpenMobileMenu] =
     React.useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleClick = (): void => {
     setIsOpenMobileMenu(!isOpenMobileMenu);
@@ -50,32 +51,29 @@ const DefaultLayout = () => {
           }}
         >
           <List sx={{ width: "100%" }}>
-            <List sx={{ display: "flex", flexDirection: "column" }}>
             <ListItem sx={{ display: "flex", flexDirection: "column" }}>
-              <Link to="/" >
                 <Button
                   sx={{
                     border: "1px solid black",
                     height: "3rem",
                     width: "100%",
                   }}
+                  onClick={()=>navigate("/")}
                 >
                   대시보드
                 </Button>
-              </Link>
-              <Link to="/ad" >
                 <Button
                   sx={{
                     border: "1px solid black",
                     height: "3rem",
                     width: "100%",
+                    mt:"1rem"
                   }}
+                  onClick={()=>navigate("/ad")}
                 >
                   광고관리
                 </Button>
-              </Link>
             </ListItem>
-            </List>
           </List>
         </Container>
       ) : null}
