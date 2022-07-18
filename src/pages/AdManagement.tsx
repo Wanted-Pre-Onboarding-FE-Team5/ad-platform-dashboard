@@ -1,8 +1,9 @@
 import React from "react";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import styled from "@emotion/styled";
 import AdList from "../components/AdList";
+import AdCreateItem from "../components/AdCreateItem";
 
 type Props = {};
 
@@ -16,7 +17,7 @@ const AdManagement = (props: Props) => {
       <BtnBox>
         <Button variant="outlined">전체 광고</Button>{" "}
         {/* TODO: 전체 광고 버튼 셀렉트박스로 변경 예정 */}
-        <Button variant="contained">광고 만들기</Button>
+        <AdCreateItem />
       </BtnBox>
       <AdList />
     </AdmanagementContainer>

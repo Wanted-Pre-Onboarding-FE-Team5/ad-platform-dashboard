@@ -23,10 +23,15 @@ export const useAdListModel = () => {
     updateAdList(response);
   };
 
+  const postAdItemById = async (id: number, data: AdListDataType) => {
+    return await adListRequest.post(`/${id}`, data);
+  };
+
   return {
     adList,
     getAdList,
     putAdItemById,
     deleteAdList,
+    postAdItemById,
   };
 };

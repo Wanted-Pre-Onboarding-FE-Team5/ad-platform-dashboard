@@ -26,6 +26,11 @@ export class HttpRequest implements HttpRequestType {
   delete(url: string) {
     return this.service.delete(url);
   }
+
+  post(url: string, data: any) {
+    return this.service.post(url, data);
+  }
+
 }
 
 //AxiosResponse 의 형태

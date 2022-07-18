@@ -21,7 +21,7 @@ import { useAdListModel } from "../models/useAdListModel";
 
 export default function AdItem() {
   const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
-  const { deleteAdList } = useAdListModel();
+  const { deleteAdList, putAdItemById } = useAdListModel();
   React.useEffect(() => {
     // getAdList();
     adListRequest.get("").then((response) => {
@@ -31,6 +31,7 @@ export default function AdItem() {
 
   const handleModifyClick = () => {
     console.log("수정클릭");
+    test();
   };
 
   const handleDeleteClick = (
@@ -41,6 +42,25 @@ export default function AdItem() {
     console.log(params);
     deleteAdList(params);
   };
+
+  //put test
+  const test = () => {
+    putAdItemById(1, {
+      id: 1,
+      adType: "web",
+      title: "광고 7810",
+      budget: 7810,
+      status: "active",
+      startDate: "2020-10-19T00:00:00",
+      endDate: null,
+      report: {
+        cost: 267144117,
+        convValue: 1157942685,
+        roas: 433,
+      },
+    });
+  };
+  //
 
   return (
     <AdItemContainer>
