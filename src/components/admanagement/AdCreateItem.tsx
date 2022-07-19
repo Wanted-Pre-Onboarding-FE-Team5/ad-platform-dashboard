@@ -29,16 +29,54 @@ const style = {
   p: 4,
 };
 
-const AdCreateItem = () => {
+type MyFormProps = {
+  onSubmit: (form: { id: number; adType: string; title: string }) => void;
+};
+
+const AdCreateItem = ({ onSubmit }: MyFormProps) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [form, setForm] = React.useState({
+    id: 1,
+    adType: "",
+    title: "",
+  });
 
-  const { postAdItemById } = useAdListModel();
-  const handleSubmitBtn = () => {
-    console.log("저장하기");
-    // postAdItemById(10,);
+  const { id, adType, title } = form;
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
   };
+  const { putAdItemById } = useAdListModel();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit(form);
+    setForm({
+      id: 1,
+      adType: "",
+      title: "",
+    }); // 초기화
+    putAdItemById(1, {
+      adType: adType,
+      title: title,
+      id: 0,
+      budget: 0,
+      status: "",
+      startDate: "",
+      endDate: null,
+      report: {
+        cost: 0,
+        convValue: 0,
+        roas: 0,
+      },
+    });
+  };
+
   return (
     <>
       <Button onClick={handleOpen} variant="contained">
@@ -52,79 +90,13 @@ const AdCreateItem = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <Test method="get">
-              <AditemBox
-                key={1}
-                variant="outlined"
-                style={{ borderRadius: "12px" }}
-              >
-                <CardHeader
-                  title={<input placeholder="제목" name="title" />}
-                  sx={{ pb: 0 }}
-                />
-
-                <CardContent>
-                  <TableContainer>
-                    <Table size="small">
-                      <TableBody>
-                        <Row
-                          style={{
-                            borderTop: "1px solid rgba(224, 224, 224, 1)",
-                          }}
-                        >
-                          <TableCell>상태</TableCell>
-                          <TableCell>
-                            <input placeholder="상태" name="status" />
-                          </TableCell>
-                        </Row>
-                        <Row>
-                          <TableCell>광고 생성일</TableCell>
-                          <TableCell>
-                            <input placeholder="광고 생성일" name="startDate" />
-                          </TableCell>
-                        </Row>
-                        <Row>
-                          <TableCell>일 희망 예산</TableCell>
-                          <TableCell>
-                            <input placeholder="일 희망 예산" name="budget" />
-                          </TableCell>
-                        </Row>
-                        <Row>
-                          <TableCell>광고 수익률</TableCell>
-                          <TableCell>
-                            <input placeholder="광고 수익률" name="roas" />
-                          </TableCell>
-                        </Row>
-                        <Row>
-                          <TableCell>매출</TableCell>
-                          <TableCell>
-                            <input placeholder="매출" name="cost" />
-                          </TableCell>
-                        </Row>
-                        <Row>
-                          <TableCell>광고 비용</TableCell>
-                          <TableCell>
-                            <input placeholder="광고 비용" name="convValue" />
-                          </TableCell>
-                        </Row>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </CardContent>
-
-                <ButtonContainer sx={{ p: 0, pb: 2 }}>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    color="inherit"
-                    onClick={handleSubmitBtn}
-                    type="submit"
-                  >
-                    저장하기
-                  </Button>
-                </ButtonContainer>
-              </AditemBox>
-            </Test>
+            {/* form */}
+            <form onSubmit={handleSubmit}>
+              {/* <input name="id" onChange={onChange} /> */}
+              <input name="adType" value={adType} onChange={onChange} />
+              <input name="title" value={title} onChange={onChange} />
+              <button type="submit">등록</button>
+            </form>
           </Typography>
         </Box>
       </Modal>
@@ -142,26 +114,5 @@ const Row = styled(TableRow)`
 
   & > td {
     padding: 0.5rem;
-  }
-`;
-
-const ButtonContainer = styled(CardActions)`
-  justify-content: space-around;
-  & > button {
-    color: black;
-    border: 1px solid rgba(224, 224, 224, 1);
-  }
-`;
-
-const Test = styled.form``;
-
-const AditemBox = styled(DefaultCard)`
-  margin: 10px 10px;
-
-  box-sizing: border-box;
-
-  &:hover {
-    border: 1px solid #2a76d2;
-    cursor: pointer;
   }
 `;
