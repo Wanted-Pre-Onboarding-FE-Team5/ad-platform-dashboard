@@ -42,6 +42,8 @@ const AdCreateItem = ({ onSubmit }: MyFormProps) => {
     adType: "",
     title: "",
   });
+  const { adList, postAdItemById } = useAdListModel();
+  console.log(adList);
 
   const { id, adType, title } = form;
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +53,6 @@ const AdCreateItem = ({ onSubmit }: MyFormProps) => {
       [name]: value,
     });
   };
-  const { putAdItemById } = useAdListModel();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,10 +62,10 @@ const AdCreateItem = ({ onSubmit }: MyFormProps) => {
       adType: "",
       title: "",
     }); // 초기화
-    putAdItemById(1, {
+    postAdItemById({
       adType: adType,
       title: title,
-      id: 0,
+      id: 10,
       budget: 0,
       status: "",
       startDate: "",

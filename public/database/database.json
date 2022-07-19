@@ -5127,48 +5127,6 @@
   ],
   "ad-list": [
     {
-      "id": 1,
-      "adType": "web",
-      "title": "광고 1234",
-      "budget": 500000,
-      "status": "active",
-      "startDate": "2020-10-19T00:00:00",
-      "endDate": null,
-      "report": {
-        "cost": 267144117,
-        "convValue": 1157942685,
-        "roas": 433
-      }
-    },
-    {
-      "id": 2,
-      "adType": "web",
-      "title": "광고 7810",
-      "budget": 7810,
-      "status": "active",
-      "startDate": "2020-10-19T00:00:00",
-      "endDate": null,
-      "report": {
-        "cost": 267144117,
-        "convValue": 1157942685,
-        "roas": 433
-      }
-    },
-    {
-      "id": 3,
-      "adType": "web",
-      "title": "광고 3443",
-      "budget": 500000,
-      "status": "active",
-      "startDate": "2020-10-19T00:00:00",
-      "endDate": null,
-      "report": {
-        "cost": 267144117,
-        "convValue": 1157942685,
-        "roas": 433
-      }
-    },
-    {
       "id": 4,
       "adType": "web",
       "title": "광고 6789",
@@ -5180,6 +5138,20 @@
         "cost": 267144117,
         "convValue": 1157942685,
         "roas": 433
+      }
+    },
+    {
+      "adType": "te",
+      "title": "te",
+      "id": 10,
+      "budget": 0,
+      "status": "",
+      "startDate": "",
+      "endDate": null,
+      "report": {
+        "cost": 0,
+        "convValue": 0,
+        "roas": 0
       }
     }
   ]

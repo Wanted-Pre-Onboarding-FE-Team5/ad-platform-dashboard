@@ -14,7 +14,8 @@ const AdList = () => {
   const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
   const { getAdList } = useAdListModel();
   React.useEffect(() => {
-    getAdList(); //TODO : bug 발생!!!!
+    getAdList(""); //TODO : bug 발생!!!!
+
     // adListRequest.get_ad("").then((response) => {
     //   setAdList(response.data);
     // });
