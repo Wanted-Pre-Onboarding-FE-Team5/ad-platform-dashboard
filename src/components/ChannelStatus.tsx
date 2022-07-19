@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
 import StackedBarChart from './StackedBarChart';
 import BasicTable from './BasicTable';
+import { Box, Container, Typography } from '@mui/material';
 import { useChannelStatusModel } from '../models/useChannelStatusModel';
 import { ChannelStatusType } from '../models/types/index';
 

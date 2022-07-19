@@ -4,6 +4,7 @@ import { adListRequest } from '../axiosFactory/adListAxios';
 import { channelStatusRequest } from '../axiosFactory/channelStatusAxios';
 import { totalAdStatusRequest } from '../axiosFactory/totalAdStatusAxios';
 import { TotalAdStatusType } from '../models/types/index';
+import { ChannelStatusType } from '../models/types/index';
 
 export const dateState = atom({
   key: 'dateState',
@@ -31,7 +32,7 @@ export const adListState = atom({
 const channelStateSelector = selector({
   key: 'channelStateSelector',
   get: async () => {
-    const response: AxiosResponse<any, any> = await channelStatusRequest.get_channel('');
+    const response: AxiosResponse<ChannelStatusType[]> = await channelStatusRequest.get_channel('');
     return response.data;
   },
 });
