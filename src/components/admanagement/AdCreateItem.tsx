@@ -15,7 +15,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { useAdListModel } from "../models/useAdListModel";
+import { useAdListModel } from "../../models/useAdListModel";
 
 const style = {
   position: "absolute" as "absolute",

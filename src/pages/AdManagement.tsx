@@ -2,8 +2,8 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import styled from "@emotion/styled";
-import AdList from "../components/AdList";
-import AdCreateItem from "../components/AdCreateItem";
+import AdList from "../components/admanagement/AdList";
+import AdCreateItem from "../components/admanagement/AdCreateItem";
 
 type Props = {};
 
