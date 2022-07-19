@@ -1,17 +1,10 @@
-import { TotalAdStatusType } from '../types/totalAdStatusType'
+import { TotalAdStatusType } from '../models/types/index';
 
 type FormatType = {
   (sum: number): string | undefined;
-}
+};
 
-const essentialStatus: any = [
-  "roas",
-  "click",
-  "cost",
-  "imp",
-  "conv",
-  "convValue",
-];
+const essentialStatus: any = ['roas', 'click', 'cost', 'imp', 'conv', 'convValue'];
 
 export enum CashUnits {
   thousand = 1000,
@@ -27,7 +20,7 @@ export const calcWeeklySum: any = (totalAdStatus: TotalAdStatusType[], callback:
     totalAdStatus.forEach((dailyStatus: any) => {
       sum += dailyStatus[`${essentialStatus[i]}`];
     });
-    const temp: {[key:string]:number} = {};
+    const temp: { [key: string]: number } = {};
     temp[`${essentialStatus[i]}Sum`] = sum;
     weeklySum.push(temp);
     sum = 0;
@@ -40,48 +33,35 @@ export const calcWeeklySum: any = (totalAdStatus: TotalAdStatusType[], callback:
 //   (sum: number): string;
 // }
 
-const weeklySumFormat :FormatType = (statusSum) => { 
+const weeklySumFormat: FormatType = (statusSum) => {
   const statusKey = Object.keys(statusSum)[0];
-  const sum = Object.values(statusSum)[0];  
-  
+  const sum = Object.values(statusSum)[0];
+
   switch (statusKey) {
-      case "roasSum":
-        return `ROAS : ${Math.ceil(sum / 7)}%`;
-      case "clickSum":
-        return `클릭수 : ${(
-          (Math.ceil(sum / CashUnits.thousand) * CashUnits.thousand) /
-          CashUnits.tenThousand
-        ).toLocaleString("ko-KR")}만 회`;
-        case "costSum":
-        return `광고비 : ${(
-          (Math.ceil(sum / CashUnits.tenThousand) * CashUnits.tenThousand) /
-          CashUnits.tenThousand
-        ).toLocaleString("ko-KR")}만 원`;
-      case "impSum":
-        return `노출수 :${(
-          (Math.ceil(sum / CashUnits.tenThousand) * CashUnits.tenThousand) /
-          CashUnits.tenThousand
-        ).toLocaleString("ko-KR")}만 회`;
-      case "convSum":
-        return `전환수 : ${sum.toLocaleString("ko-KR")}회`;
-      case "convValueSum":
-        return `매출 : ${
-          (Math.ceil(sum / CashUnits.tenMillion) * CashUnits.tenMillion) /
-          CashUnits.hundredmillion
-        }억 원`;
-      default:
-        break;
-    }
+    case 'roasSum':
+      return `ROAS : ${Math.ceil(sum / 7)}%`;
+    case 'clickSum':
+      return `클릭수 : ${((Math.ceil(sum / CashUnits.thousand) * CashUnits.thousand) / CashUnits.tenThousand).toLocaleString('ko-KR')}만 회`;
+    case 'costSum':
+      return `광고비 : ${((Math.ceil(sum / CashUnits.tenThousand) * CashUnits.tenThousand) / CashUnits.tenThousand).toLocaleString('ko-KR')}만 원`;
+    case 'impSum':
+      return `노출수 :${((Math.ceil(sum / CashUnits.tenThousand) * CashUnits.tenThousand) / CashUnits.tenThousand).toLocaleString('ko-KR')}만 회`;
+    case 'convSum':
+      return `전환수 : ${sum.toLocaleString('ko-KR')}회`;
+    case 'convValueSum':
+      return `매출 : ${(Math.ceil(sum / CashUnits.tenMillion) * CashUnits.tenMillion) / CashUnits.hundredmillion}억 원`;
+    default:
+      break;
+  }
 };
 
-export const useWeeklyStatusCallback = (weeklySum:{[key:string]:number}) : string[] => {
-  const weeklyAdStatus : any[] = [];
+export const useWeeklyStatusCallback = (weeklySum: { [key: string]: number }): string[] => {
+  const weeklyAdStatus: any[] = [];
   for (const statusSum of Object.values(weeklySum)) {
     weeklyAdStatus.push(weeklySumFormat(statusSum));
-  }  
+  }
   return weeklyAdStatus;
-}
-
+};
 
 /*
   let roasSum = 0;
