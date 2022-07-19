@@ -6,21 +6,20 @@ import { ListItem } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-type menuWidthType = {
-  menuWidth: number;
-};
+export enum sideMenuWidth {
+  width = 240
+}
 
-const Sidebar = (props: menuWidthType) => {
-  const { menuWidth } = props;
+const Sidebar = () => {
   const navigate = useNavigate();
 
   return (
     <Drawer
       sx={{
-        width: menuWidth,
+        width: sideMenuWidth.width,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: menuWidth,
+          width: sideMenuWidth.width,
           boxSizing: "border-box",
         },
       }}

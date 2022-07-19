@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Toolbar, Container, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import styled from "@emotion/styled";
-import AdList from "../components/AdList";
-import AdCreateItem from "../components/AdCreateItem";
 import { useAdListModel } from "../models/useAdListModel";
+import AdList from "../components/admanagement/AdList";
+import AdCreateItem from "../components/admanagement/AdCreateItem";
 
 const AdManagement = () => {
   const { putAdItemById } = useAdListModel();
