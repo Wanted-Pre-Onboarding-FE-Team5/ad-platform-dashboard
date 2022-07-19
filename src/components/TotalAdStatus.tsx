@@ -13,10 +13,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { calculateSum, calculateSumCallback } from "../models/useFormatModel";
-import Brightness1Icon from "@mui/icons-material/Brightness1";
 import { dataService, getData } from "../axiosFactory/api";
+import LegendItem from "./LegendItem";
 
 //TODO map key 처리
+//TODO 데이터 불러오는 부분 hooks 처리해서 반환 => grid랑 chart 컴포넌트 분리하기
 const TotalAdStatus = () => {
   const [totalAdStatus, setTotalAdStatus] =
     useRecoilState<DataTypeGeneric[]>(totalAdStatusState);
@@ -66,29 +67,7 @@ const TotalAdStatus = () => {
             })}
           </Grid>
         </Container>
-
-        <Container
-          sx={{ display: "flex", alignItems: "center", height: "4rem" }}
-        >
-          <Item sx={{ width: "8rem", display: "flex", alignItems: "center" }}>
-            <Brightness1Icon sx={{ color: "blue", mr: "2rem", fontSize: 10 }} />
-            roas
-          </Item>
-          <Item
-            sx={{
-              width: "8rem",
-              ml: "1rem",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Brightness1Icon
-              sx={{ color: "green", mr: "2rem", fontSize: 10 }}
-            />
-            click
-          </Item>
-        </Container>
-
+        <LegendItem />
         <ResponsiveContainer width="100%" aspect={2}>
           <LineChart
             data={totalAdStatus}
