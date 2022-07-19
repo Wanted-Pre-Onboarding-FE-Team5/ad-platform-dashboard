@@ -1,6 +1,5 @@
-
 import React from "react";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   Box,
@@ -13,28 +12,20 @@ import {
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 
-
-const menuWidth = 240; //-> type? enum?
-
-//Box의 width -> min-? max-?
-//isOpenMobileMenu가 true인 상태에서 480px 이상 커지면 초기화하기
-//header 부분 z-index 수정. 자꾸 다른 컴포넌트 밑으로 들어감
 const DefaultLayout = () => {
-
   const isMobile: boolean = useMediaQuery("(max-width:480px)");
   const [isOpenMobileMenu, setIsOpenMobileMenu] =
     React.useState<boolean>(false);
   const navigate = useNavigate();
-
 
   const handleClick = (): void => {
     setIsOpenMobileMenu(!isOpenMobileMenu);
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', maxWidth:"100%" }}>
       <CssBaseline />
-      {isMobile ? null : <Sidebar menuWidth={menuWidth} />}
+      {isMobile ? null : <Sidebar />}
 
       {/* 헤더 */}
       <Header isMobile={isMobile} isOpenMobileMenu={isOpenMobileMenu} handleClick={handleClick} />
@@ -47,7 +38,7 @@ const DefaultLayout = () => {
             top: `4rem`,
             left: 0,
             width: '100%',
-            height: 'auto', //높이 어떻게..?
+            height: 'auto',
             display: 'flex',
             alignItems: 'center',
             backgroundColor: 'white',
@@ -57,7 +48,6 @@ const DefaultLayout = () => {
 
           <List sx={{ width: "100%" }}>
             <ListItem sx={{ display: "flex", flexDirection: "column" }}>
-
                 <Button
                   sx={{
                     border: '1px solid black',
@@ -68,14 +58,12 @@ const DefaultLayout = () => {
                 >
                   대시보드
                 </Button>
-
                 <Button
                   sx={{
                     border: "1px solid black",
                     height: "3rem",
                     width: "100%",
                     mt:"1rem"
-
                   }}
                   onClick={()=>navigate("/ad")}
                 >

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { totalAdStatusRequest } from "../axiosFactory/totalAdStatusAxios";
-import { TotalAdStatusType } from "../types/totalAdStatusType";
+import { TotalAdStatusType } from "../models/types/index";
 
 export const useTotalAdStatusModel = () => {
   const getTotalAdStatus = async (url : string) : Promise<TotalAdStatusType[]> => {

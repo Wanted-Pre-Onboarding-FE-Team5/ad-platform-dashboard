@@ -1,10 +1,10 @@
 import { AxiosResponse, AxiosInstance } from 'axios';
-import { TotalAdStatusType } from '../types/totalAdStatusType';
+import { TotalAdStatusType } from "../models/types/index";
 import { ChannelStatusType } from './../types/channelStatusType';
+
 interface HttpRequestType {
   get_total: (url: string) => Promise<AxiosResponse<TotalAdStatusType[]>>;
   get_channel: (url: string) => Promise<AxiosResponse<ChannelStatusType[]>>;
-
 }
 
 export class HttpRequest implements HttpRequestType {
@@ -37,7 +37,3 @@ export class HttpRequest implements HttpRequestType {
   }
 
 }
-
-//AxiosResponse 의 형태
-//https://axios-http.com/kr/docs/res_schema
-//https://www.delftstack.com/howto/typescript/axios-typescript/
