@@ -1,31 +1,26 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import { Button, Box, Grow, Paper, Popper, MenuList } from "@mui/material";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
-import { addDays } from "date-fns";
+import { dateRange } from "../store/dateAtom";
+import { progressState } from "../store/statusAtom";
+import { useRecoilValue } from "recoil";
+import { weekDropdown, statusDropdown } from "./DropdownItem";
+import { DefaultDateType } from "../store/dateAtom";
+
+const dropdownHeight = "12rem";
+
+export type DefaultProgressType = {
+  all: string;
+  active: string;
+  closed: string;
+};
 
 const Dropdown = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-
-  //주간 산출하는 함수
-  //반복문 => 돌리고 endDate이 4월 20일 기준 7일미만이면 반복 탈출
-  const getWeekRange = () : string[][] => {
-    const weeks = [];
-    const lastDate: Date = new Date("2022-04-20");
-    let startDate: Date = new Date("2022-02-01");
-    while (startDate <= lastDate) {
-      let endDate: Date = addDays(startDate, 6);
-      weeks.push([startDate.toString(), endDate.toString()]);
-      startDate = addDays(startDate, 7);
-    }
-    return weeks;
-  };
-  console.log(getWeekRange());
+  const rangeValue: DefaultDateType[] = useRecoilValue(dateRange);
+  const progressValue : DefaultProgressType = useRecoilValue(progressState);
+  const checkTab = window.location.href.includes("/ad"); //광고관리=true,대시보드=false
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -48,7 +43,6 @@ const Dropdown = () => {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -59,7 +53,13 @@ const Dropdown = () => {
   }, [open]);
 
   return (
-    <div>
+    <Box
+      style={{
+        border: "1px solid #eeeeee",
+        backgroundColor: "white",
+        width: dropdownHeight,
+      }}
+    >
       <Button
         ref={anchorRef}
         id="composition-button"
@@ -67,8 +67,9 @@ const Dropdown = () => {
         aria-expanded={open ? "true" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
+        sx={{ width: "100%" }}
       >
-        날짜
+        {checkTab ? `전체 광고` : `${rangeValue[0].start}~${rangeValue[0].end}`}
       </Button>
       <Popper
         open={open}
@@ -77,6 +78,7 @@ const Dropdown = () => {
         placement="bottom-start"
         transition
         disablePortal
+        sx={{ width: dropdownHeight, overflowY: "auto" }}
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -93,17 +95,18 @@ const Dropdown = () => {
                   id="composition-menu"
                   aria-labelledby="composition-button"
                   onKeyDown={handleListKeyDown}
+                  sx={{ height: "120px" }}
                 >
-                  <MenuItem onClick={handleClose}>2월 1일 ~ 2월7일</MenuItem>
-                  <MenuItem onClick={handleClose}>2월 8일 ~ 2월14일</MenuItem>
-                  <MenuItem onClick={handleClose}>2월 15일 ~ 2월21일</MenuItem>
+                  {checkTab
+                    ? Object.values(progressValue).map(statusDropdown(handleClose))
+                    : rangeValue.map(weekDropdown(handleClose))}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
           </Grow>
         )}
       </Popper>
-    </div>
+    </Box>
   );
 };
 

@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Toolbar, Container, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
+import { Box, Toolbar, Container } from "@mui/material";
 import styled from "@emotion/styled";
 import { useAdListModel } from "../models/useAdListModel";
 import AdList from "../components/admanagement/AdList";
 import AdCreateItem from "../components/admanagement/AdCreateItem";
+import Dropdown from "../layouts/Dropdown";
 
 const AdManagement = () => {
   const { putAdItemById } = useAdListModel();
@@ -20,18 +20,26 @@ const AdManagement = () => {
         // height: 100,
       }}
     >
-      <Typography sx={{ mt: 2, mb: 2, ml: 2, fontWeight: "bold" }}>
-        통합 광고 현황
-      </Typography>
-      <Container
+      <Toolbar
         sx={{
-          bgcolor: "white",
-          borderRadius: "20px",
+          display: "flex",
+          justifyContent: "space-between",
+          fontSize: "1.5rem",
+          fontWeight: "bold",
         }}
       >
-        <BtnBox>
-          <Button variant="outlined">전체 광고</Button>{" "}
-          {/* TODO: 전체 광고 버튼 셀렉트박스로 변경 예정 */}
+        광고관리
+      </Toolbar>
+
+      <Box sx={{ pl: 3, pr:3 }}>
+        <Container
+          sx={{
+            bgcolor: "white",
+            borderRadius: "20px",
+          }}
+        >
+          <Container sx={{ display:"flex", justifyContent:"space-between", p:2}}>
+          <Dropdown />{" "}
           <AdCreateItem
             onSubmit={function (form: {
               id: number;
@@ -41,9 +49,23 @@ const AdManagement = () => {
               console.log(form);
             }}
           />
-        </BtnBox>
-        <AdList />
-      </Container>
+          </Container>
+          {/* TODO: 전체 광고 버튼 셀렉트박스로 변경 예정 */}
+          {/* <BtnBox>
+          <Button variant="outlined">전체 광고</Button>{" "}
+          <AdCreateItem
+            onSubmit={function (form: {
+              id: number;
+              adType: string;
+              title: string;
+            }): void {
+              console.log(form);
+            }}
+          />
+        </BtnBox> */}
+          <AdList />
+        </Container>
+      </Box>
     </Box>
   );
 };

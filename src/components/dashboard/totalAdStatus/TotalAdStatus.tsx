@@ -25,10 +25,10 @@ const TotalAdStatus = () => {
 
   // 일주일치 데이터 하드 코딩 2022-02-01 ~ 2022-02-07
   // "?date_gte=2022-02-01&date_lte=2022-02-07"
-  const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
+  //const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
 
   React.useEffect(() => {
-    getTotalAdStatusData(dataService("totalAdStatus"),url)
+    getTotalAdStatusData(dataService("totalAdStatus"),"")
       .then((data) => setTotalAdStatus(data))
       .catch(() => console.log("data dispatch error"));
   }, [setTotalAdStatus]);
