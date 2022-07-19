@@ -16,6 +16,8 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useAdListModel } from "../models/useAdListModel";
+import AdItem from "../components/AdItem";
+import { stringify } from "querystring";
 
 const style = {
   position: "absolute" as "absolute",
@@ -52,7 +54,7 @@ const AdCreateItem = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <Test method="get">
+            {/* <Test method="get">
               <AditemBox
                 key={1}
                 variant="outlined"
@@ -124,7 +126,23 @@ const AdCreateItem = () => {
                   </Button>
                 </ButtonContainer>
               </AditemBox>
-            </Test>
+            </Test> */}
+            <AdItem //TODO 여기해야함>
+              aditem={{
+                id: 123,
+                adType: "123",
+                title: "",
+                budget: 0,
+                status: "",
+                startDate: "",
+                endDate: null,
+                report: {
+                  cost: 0,
+                  convValue: 0,
+                  roas: 0,
+                },
+              }}
+            />
           </Typography>
         </Box>
       </Modal>
@@ -165,3 +183,5 @@ const AditemBox = styled(DefaultCard)`
     cursor: pointer;
   }
 `;
+
+//TODO : Input 으로 바꾸고, name value 연결

@@ -1,9 +1,5 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import { adListRequest } from "../axiosFactory/adListAxios";
-import { AdListDataType } from "../models/types";
-import { adListState } from "../store/atom";
 import styled from "@emotion/styled";
+import React from "react";
 
 import {
   Button,
@@ -17,17 +13,15 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { AdListDataType } from "../models/types";
 import { useAdListModel } from "../models/useAdListModel";
 
-export default function AdItem() {
-  const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
+interface AdItemProps {
+  aditem: AdListDataType;
+}
+
+const AdItem = ({ aditem }: AdItemProps) => {
   const { deleteAdList, putAdItemById } = useAdListModel();
-  React.useEffect(() => {
-    // getAdList();
-    adListRequest.get_ad("").then((response) => {
-      setAdList(response.data);
-    });
-  }, []);
 
   const handleModifyClick = () => {
     console.log("수정클릭");
@@ -42,7 +36,6 @@ export default function AdItem() {
     console.log(params);
     deleteAdList(params);
   };
-
   //put test
   const test = () => {
     putAdItemById(1, {
@@ -60,94 +53,80 @@ export default function AdItem() {
       },
     });
   };
-  //
-
   return (
-    <AdItemContainer>
-      {adList?.map((dailyAd: AdListDataType) => (
-        <AditemBox
-          key={dailyAd.id}
+    <AditemBox
+      key={aditem.id}
+      variant="outlined"
+      style={{ borderRadius: "12px" }}
+    >
+      <CardHeader title={aditem.title} sx={{ pb: 0 }} />
+      <CardContent>
+        <TableContainer>
+          <Table size="small">
+            <TableBody>
+              <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
+                <TableCell>상태</TableCell>
+                <TableCell>
+                  {/* {dailyAd.status === "active" ? "진행중" : "종료"} */}
+                  {aditem.status === "active" ? "진행중" : "종료"}{" "}
+                </TableCell>
+              </Row>
+              <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
+                <TableCell>광고 생성일</TableCell>
+
+                <TableCell>{aditem.startDate}</TableCell>
+              </Row>
+              <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
+                <TableCell>일 희망 예산</TableCell>
+                <TableCell>{aditem.budget / 10000}만원</TableCell>
+              </Row>
+              <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
+                <TableCell>광고 수익률</TableCell>
+                <TableCell>{aditem.report.roas}%</TableCell>
+              </Row>
+              <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
+                <TableCell>매출</TableCell>
+                <TableCell>
+                  {Math.floor(aditem.report.convValue / 10000).toLocaleString()}
+                  만원
+                </TableCell>
+              </Row>
+              <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
+                <TableCell>광고 비용</TableCell>
+                <TableCell>
+                  {Math.floor(aditem.report.cost / 10000).toLocaleString()}
+                  만원
+                </TableCell>
+              </Row>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </CardContent>
+      <ButtonContainer sx={{ p: 0, pb: 2 }}>
+        <Button
+          size="small"
           variant="outlined"
-          style={{ borderRadius: "12px" }}
+          color="inherit"
+          onClick={handleModifyClick}
         >
-          <CardHeader title={dailyAd.title} sx={{ pb: 0 }} />
-          <CardContent>
-            <TableContainer>
-              <Table size="small">
-                <TableBody>
-                  <Row
-                    style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}
-                  >
-                    <TableCell>상태</TableCell>
-                    <TableCell>
-                      {dailyAd.status === "active" ? "진행중" : "종료"}
-                    </TableCell>
-                  </Row>
-                  <Row>
-                    <TableCell>광고 생성일</TableCell>
-                    <TableCell>{dailyAd.startDate}</TableCell>
-                  </Row>
-                  <Row>
-                    <TableCell>일 희망 예산</TableCell>
-                    <TableCell>{dailyAd.budget / 10000}만원</TableCell>
-                  </Row>
-                  <Row>
-                    <TableCell>광고 수익률</TableCell>
-                    <TableCell>{dailyAd.report.roas}%</TableCell>
-                  </Row>
-                  <Row>
-                    <TableCell>매출</TableCell>
-                    <TableCell>
-                      {Math.floor(
-                        dailyAd.report.convValue / 10000
-                      ).toLocaleString()}
-                      만원
-                    </TableCell>
-                  </Row>
-                  <Row>
-                    <TableCell>광고 비용</TableCell>
-                    <TableCell>
-                      {Math.floor(dailyAd.report.cost / 10000).toLocaleString()}
-                      만원
-                    </TableCell>
-                  </Row>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </CardContent>
-
-          <ButtonContainer sx={{ p: 0, pb: 2 }}>
-            <Button
-              size="small"
-              variant="outlined"
-              color="inherit"
-              onClick={handleModifyClick}
-            >
-              수정하기
-            </Button>
-            <Button
-              size="small"
-              variant="outlined"
-              color="warning"
-              onClick={(e) => {
-                handleDeleteClick(dailyAd.id, e);
-              }}
-            >
-              삭제하기
-            </Button>
-          </ButtonContainer>
-        </AditemBox>
-      ))}
-    </AdItemContainer>
+          수정하기
+        </Button>
+        <Button
+          size="small"
+          variant="outlined"
+          color="warning"
+          onClick={(e) => {
+            handleDeleteClick(aditem.id, e);
+          }}
+        >
+          삭제하기
+        </Button>
+      </ButtonContainer>
+    </AditemBox>
   );
-}
+};
 
-const AdItemContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
+export default AdItem;
 
 const AditemBox = styled(DefaultCard)`
   margin: 10px 10px;
