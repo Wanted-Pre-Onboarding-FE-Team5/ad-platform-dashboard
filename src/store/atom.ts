@@ -1,9 +1,5 @@
-import { AxiosResponse } from "axios";
 import { atom, selector } from "recoil";
-import { adListRequest } from "../axiosFactory/adListAxios";
-import { channelStatusRequest } from "../axiosFactory/channelStatusAxios";
-import { totalAdStatusRequest } from "../axiosFactory/totalAdStatusAxios";
-import { TotalAdStatusType } from "../types/totalAdStatusType";
+import { dataService, getData } from "../axiosFactory/api";
 
 export const dateState = atom({
   key: "dateState",
@@ -17,10 +13,7 @@ export const progressState = atom({
 
 export const adListSelector = selector({
   key: "adListSelector",
-  get: async ({ get }) => {
-    const response: AxiosResponse<any, any> = await adListRequest.get_ad("");
-    return response.data;
-  },
+  get: () => getData(dataService("adList"),"")
 });
 
 export const adListState = atom({
@@ -30,12 +23,7 @@ export const adListState = atom({
 
 const channelStateSelector = selector({
   key: "channelStateSelector",
-  get: async () => {
-    const response: AxiosResponse<any, any> = await channelStatusRequest.get_channel(
-      ""
-    );
-    return response.data;
-  },
+  get: () => getData(dataService("channelStatus"),"")
 });
 
 export const channelState = atom({
@@ -45,11 +33,7 @@ export const channelState = atom({
 
 const totalAdStatusSelector = selector({
   key: "totalAdStatusSelector",
-  get: async () => {
-    const response: AxiosResponse<TotalAdStatusType[]> =
-      await totalAdStatusRequest.get_total("");
-    return response.data;
-  },
+  get: () => getData(dataService("totalAdStatus"),"")
 });
 
 export const totalAdStatusState = atom({

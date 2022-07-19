@@ -1,10 +1,9 @@
 import React from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
 import { Item } from "../styles/Item";
-import { useTotalAdStatusModel } from "../models/useTotalAdStatusModel";
 import { useRecoilState } from "recoil";
 import { totalAdStatusState } from "../store/atom";
-import { TotalAdStatusType } from "../models/types/index";
+import { DataTypeGeneric } from "../models/types";
 import {
   LineChart,
   Line,
@@ -15,24 +14,24 @@ import {
 } from "recharts";
 import { calculateSum, calculateSumCallback } from "../models/useFormatModel";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
+import { dataService, getData } from "../axiosFactory/api";
 
-//TODO dependency 처리, map key 처리
+//TODO map key 처리
 const TotalAdStatus = () => {
   const [totalAdStatus, setTotalAdStatus] =
-    useRecoilState<TotalAdStatusType[]>(totalAdStatusState);
+    useRecoilState<DataTypeGeneric[]>(totalAdStatusState);
   const [weeklyData, setWeeklyData] = React.useState<string[]>([]);
 
-  //일주일치 데이터 하드 코딩 2022-02-01 ~ 2022-02-07
+  // 일주일치 데이터 하드 코딩 2022-02-01 ~ 2022-02-07
   // "?date_gte=2022-02-01&date_lte=2022-02-07"
-  const { getTotalAdStatus } = useTotalAdStatusModel();
-  React.useEffect(() => {
-    getTotalAdStatus("?date_gte=2022-02-01&date_lte=2022-02-07")
-      .then((data) => {
-        setTotalAdStatus(data);
-      })
-      .catch((error) => console.log("data fetching error! detail:", error));
-  }, []);
+  const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
 
+  React.useEffect(() => {
+    getData(dataService("totalAdStatus"),url)
+      .then((data) => console.log(data))
+      .catch(() => console.log("data dispatch error"));
+  }, [setTotalAdStatus]);
+  
   React.useEffect(
     () => setWeeklyData(calculateSum(totalAdStatus, calculateSumCallback)),
     [totalAdStatus]

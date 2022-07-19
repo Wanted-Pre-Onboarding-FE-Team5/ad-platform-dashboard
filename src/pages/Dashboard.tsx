@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Toolbar } from "@mui/material";
 import TotalAdStatus from "../components/TotalAdStatus";
-import ChannelStatus from "../components/ChannelStatus";
+import Dropdown from "../components/Dropdown";
+//import ChannelStatus from "../components/ChannelStatus";
 
 const Dashboard = () => {
   return (
@@ -15,8 +16,11 @@ const Dashboard = () => {
       }}
     >
       <Toolbar>대시 보드</Toolbar>
+      {/* 드롭다운 */}  
+      <Dropdown />
+      
       <TotalAdStatus />
-      <ChannelStatus />
+      {/* <ChannelStatus /> */}
     </Box>
   );
 };

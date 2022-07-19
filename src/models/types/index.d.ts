@@ -1,4 +1,7 @@
-//TODO : 타입 용도에 따라 -> index에서 모으기?
+export type DataTypeGeneric =
+  | AdListDataType
+  | TotalAdStatusType
+  | ChannelStatusType;
 
 export type AdListDataType = {
   id: number;
@@ -30,4 +33,18 @@ export type TotalAdStatusType = {
   roas: number;
   date: string;
   name?: string; //안쓸거면 지우기
+};
+
+export type ChannelStatusType = {
+  channel: string;
+  date: string;
+  imp: number;
+  click: number;
+  cost: number;
+  convValue: number;
+  ctr: number;
+  cvr: number;
+  cpc: number;
+  cpa: number;
+  roas: number;
 };

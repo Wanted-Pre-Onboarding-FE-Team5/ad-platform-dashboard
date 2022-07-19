@@ -1,6 +1,4 @@
-import { TotalAdStatusType } from "./types/index";
-
-//TODO : any 처리 = 할만큼 함...
+import { DataTypeGeneric } from "./types";
 
 export enum CashUnits {
   thousand = 1000,
@@ -22,7 +20,7 @@ type WeeklySumType = {
   [key:string]:number
 }
 
-export const calculateSum = (totalAdStatus: TotalAdStatusType[], callback :any) : string[] => {
+export const calculateSum = (totalAdStatus: DataTypeGeneric[], callback :any) : string[] => {
   const weeklySum : WeeklySumType[] = [];
   for (let i: number = 0; i < essentialStatus.length; i++) {
     let sum: number = 0;

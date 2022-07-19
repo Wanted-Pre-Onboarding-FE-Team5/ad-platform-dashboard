@@ -1,23 +1,9 @@
-import { AxiosResponse, AxiosInstance } from 'axios';
-import { TotalAdStatusType } from "../models/types/index";
-import { ChannelStatusType } from './../types/channelStatusType';
+import { AxiosInstance } from 'axios';
 
-interface HttpRequestType {
-  get_total: (url: string) => Promise<AxiosResponse<TotalAdStatusType[]>>;
-  get_channel: (url: string) => Promise<AxiosResponse<ChannelStatusType[]>>;
-}
-
-export class HttpRequest implements HttpRequestType {
+//슬기의 http request만 남기고 삭제
+export class HttpRequest {
   constructor(private service: AxiosInstance) {
     this.service = service;
-  }
-
-  get_total(url: string) {
-    return this.service.get<TotalAdStatusType[]>(url);
-  }
-
-  get_channel(url: string) {
-    return this.service.get<ChannelStatusType[]>(url);
   }
 
   get_ad(url: string) {
