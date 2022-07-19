@@ -2,15 +2,16 @@ import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import StackedBarChart from './StackedBarChart';
 import BasicTable from './BasicTable';
-import { useChannelStatusModel } from '../models/useChannelStatusModel';
-import { ChannelStatusType } from '../types/channelStatusType';
+import { ChannelStatusType } from "../../../models/types";
+import { dataService, getChannelStatusData } from '../../../api/api';
 
 const ChannelStatus = () => {
-  const { getChannelStatus } = useChannelStatusModel();
-
   const [channelState, setChannelState] = React.useState<ChannelStatusType[]>();
+
   React.useEffect(() => {
-    getChannelStatus('').then((data) => setChannelState(data));
+    getChannelStatusData(dataService("channelStatus"),"")
+    .then((data) => setChannelState(data))
+    .catch(() => console.log("data dispatch error"))
   }, []);
   console.log(channelState);
 

@@ -1,6 +1,5 @@
-import React from "react";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
-import { Item } from "../styles/Item";
+import { Item } from "../../../styles/Item";
 import Container from "@mui/material/Container";
 
 const LegendItem = () => {

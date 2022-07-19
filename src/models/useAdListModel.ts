@@ -1,17 +1,14 @@
-import { AxiosResponse } from "axios";
 import React from "react";
-import { adListRequest } from "../axiosFactory/adListAxios";
 import { AdListDataType } from "./types";
+import { dataService } from "../api/api";
+
 export const useAdListModel = () => {
   const [adList, setAdList] = React.useState(null);
-
-  const updateAdList = (response: AxiosResponse<any, any>) => {
-    setAdList(response.data);
-  };
+  const adListRequest = dataService("adList");
 
   const getAdList = async () => {
-    const response = await adListRequest.get_ad("");
-    updateAdList(response);
+    const response = await adListRequest.get("");
+    setAdList(response.data);
   };
 
   const putAdItemById = async (id: number, data: AdListDataType) => {
@@ -20,7 +17,7 @@ export const useAdListModel = () => {
 
   const deleteAdList = async (id: number) => {
     const response = await adListRequest.delete(`/${id}`);
-    updateAdList(response);
+    setAdList(response.data);
   };
 
   const postAdItemById = async (id: number, data: AdListDataType) => {

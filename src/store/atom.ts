@@ -1,5 +1,9 @@
 import { atom, selector } from "recoil";
-import { dataService, getData } from "../axiosFactory/api";
+import {
+  dataService,
+  getTotalAdStatusData,
+  getChannelStatusData,
+} from "../api/api";
 
 export const dateState = atom({
   key: "dateState",
@@ -13,7 +17,10 @@ export const progressState = atom({
 
 export const adListSelector = selector({
   key: "adListSelector",
-  get: () => getData(dataService("adList"),"")
+  get: async () => {
+    const response = await dataService("adList").get("");
+    return response.data;
+  },
 });
 
 export const adListState = atom({
@@ -23,7 +30,7 @@ export const adListState = atom({
 
 const channelStateSelector = selector({
   key: "channelStateSelector",
-  get: () => getData(dataService("channelStatus"),"")
+  get: () => getChannelStatusData(dataService("channelStatus"), ""),
 });
 
 export const channelState = atom({
@@ -33,7 +40,7 @@ export const channelState = atom({
 
 const totalAdStatusSelector = selector({
   key: "totalAdStatusSelector",
-  get: () => getData(dataService("totalAdStatus"),"")
+  get: () => getTotalAdStatusData(dataService("totalAdStatus"), ""),
 });
 
 export const totalAdStatusState = atom({

@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
-import { Item } from "../styles/Item";
+import { Item } from "../../../styles/Item";
 import { useRecoilState } from "recoil";
-import { totalAdStatusState } from "../store/atom";
-import { DataTypeGeneric } from "../models/types";
+import { totalAdStatusState } from "../../../store/atom";
+import { TotalAdStatusType } from "../../../models/types";
 import {
   LineChart,
   Line,
@@ -12,15 +12,15 @@ import {
   YAxis,
   ResponsiveContainer,
 } from "recharts";
-import { calculateSum, calculateSumCallback } from "../models/useFormatModel";
-import { dataService, getData } from "../axiosFactory/api";
+import { calculateSum, calculateSumCallback } from "../../../models/useFormatModel";
+import { dataService, getTotalAdStatusData } from "../../../api/api";
 import LegendItem from "./LegendItem";
 
 //TODO map key 처리
 //TODO 데이터 불러오는 부분 hooks 처리해서 반환 => grid랑 chart 컴포넌트 분리하기
 const TotalAdStatus = () => {
   const [totalAdStatus, setTotalAdStatus] =
-    useRecoilState<DataTypeGeneric[]>(totalAdStatusState);
+    useRecoilState<TotalAdStatusType[]>(totalAdStatusState);
   const [weeklyData, setWeeklyData] = React.useState<string[]>([]);
 
   // 일주일치 데이터 하드 코딩 2022-02-01 ~ 2022-02-07
@@ -28,8 +28,8 @@ const TotalAdStatus = () => {
   const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
 
   React.useEffect(() => {
-    getData(dataService("totalAdStatus"),url)
-      .then((data) => console.log(data))
+    getTotalAdStatusData(dataService("totalAdStatus"),url)
+      .then((data) => setTotalAdStatus(data))
       .catch(() => console.log("data dispatch error"));
   }, [setTotalAdStatus]);
   

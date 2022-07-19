@@ -9,8 +9,8 @@ import {
   Button,
   Container,
 } from "@mui/material";
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 const DefaultLayout = () => {
   const isMobile: boolean = useMediaQuery("(max-width:480px)");

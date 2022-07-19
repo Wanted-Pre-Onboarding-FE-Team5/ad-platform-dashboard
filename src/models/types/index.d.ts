@@ -1,8 +1,3 @@
-export type DataTypeGeneric =
-  | AdListDataType
-  | TotalAdStatusType
-  | ChannelStatusType;
-
 export type AdListDataType = {
   id: number;
   adType: string;

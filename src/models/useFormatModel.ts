@@ -1,4 +1,4 @@
-import { DataTypeGeneric } from "./types";
+import { TotalAdStatusType } from "./types";
 
 export enum CashUnits {
   thousand = 1000,
@@ -20,7 +20,7 @@ type WeeklySumType = {
   [key:string]:number
 }
 
-export const calculateSum = (totalAdStatus: DataTypeGeneric[], callback :any) : string[] => {
+export const calculateSum = (totalAdStatus: TotalAdStatusType[], callback :any) : string[] => {
   const weeklySum : WeeklySumType[] = [];
   for (let i: number = 0; i < essentialStatus.length; i++) {
     let sum: number = 0;
