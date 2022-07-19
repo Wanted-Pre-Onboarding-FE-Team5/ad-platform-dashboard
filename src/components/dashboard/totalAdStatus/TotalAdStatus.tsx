@@ -40,22 +40,22 @@ const TotalAdStatus = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography sx={{ mb: 3, fontWeight: "bold" }}>통합 광고 현황</Typography>
+      <Typography sx={{ mb: 3, fontWeight: 'bold' }}>통합 광고 현황</Typography>
       <Container
         sx={{
-          bgcolor: "white",
-          borderRadius: "20px",
+          bgcolor: 'white',
+          borderRadius: '20px',
         }}
       >
-        <Container sx={{ display: "flex", justifyContent: "center", p: 4 }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
           <Grid
             container
             spacing={2}
             sx={{
-              width: "100%",
+              width: '100%',
               flexGrow: 1,
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center',
             }}
           >
             {weeklyData?.map((data: string, index: number) => {
@@ -82,8 +82,8 @@ const TotalAdStatus = () => {
               padding={{ left: 120, right: 100 }}
             />
             <YAxis axisLine={false} tickLine={false} tickMargin={10} />
-            <Line type="monotone" dataKey="roas" stroke="blue" />
-            <Line type="monotone" dataKey="click" stroke="green" />
+            <Line type='monotone' dataKey='roas' stroke='blue' />
+            <Line type='monotone' dataKey='click' stroke='green' />
           </LineChart>
         </ResponsiveContainer>
       </Container>

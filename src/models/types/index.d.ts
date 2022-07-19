@@ -1,3 +1,32 @@
+export type TotalAdStatusType = {
+  imp: number;
+  click: number;
+  cost: number;
+  conv: number;
+  convValue: number;
+  ctr: number;
+  cvr: number;
+  cpc: number;
+  cpa: number;
+  roas: number;
+  date: string;
+  name?: string;
+};
+
+export type ChannelStatusType = {
+  channel: string;
+  date: string;
+  imp: number;
+  click: number;
+  cost: number;
+  convValue: number;
+  ctr: number;
+  cvr: number;
+  cpc: number;
+  cpa: number;
+  roas: number;
+};
+
 export type AdListDataType = {
   id: number;
   adType: string;

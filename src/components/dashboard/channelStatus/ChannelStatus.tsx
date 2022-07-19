@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
 import StackedBarChart from './StackedBarChart';
 import BasicTable from './BasicTable';
 import { ChannelStatusType } from "../../../models/types";
 import { dataService, getChannelStatusData } from '../../../api/api';
+import { Box, Container, Typography } from '@mui/material';
 
 const ChannelStatus = () => {
   const [channelState, setChannelState] = React.useState<ChannelStatusType[]>();

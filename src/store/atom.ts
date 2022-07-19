@@ -6,13 +6,13 @@ import {
 } from "../api/api";
 
 export const dateState = atom({
-  key: "dateState",
-  default: ["2022-02-01", "2022-02-07"],
+  key: 'dateState',
+  default: ['2022-02-01', '2022-02-07'],
 });
 
 export const progressState = atom({
-  key: "progressState",
-  default: "active",
+  key: 'progressState',
+  default: 'active',
 });
 
 export const adListSelector = selector({
@@ -24,7 +24,7 @@ export const adListSelector = selector({
 });
 
 export const adListState = atom({
-  key: "adListState",
+  key: 'adListState',
   default: adListSelector,
 });
 
@@ -34,7 +34,7 @@ const channelStateSelector = selector({
 });
 
 export const channelState = atom({
-  key: "channelState",
+  key: 'channelState',
   default: channelStateSelector,
 });
 
@@ -44,6 +44,6 @@ const totalAdStatusSelector = selector({
 });
 
 export const totalAdStatusState = atom({
-  key: "totalAdStatusState",
+  key: 'totalAdStatusState',
   default: totalAdStatusSelector,
 });
