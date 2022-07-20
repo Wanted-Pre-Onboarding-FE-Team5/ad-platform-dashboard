@@ -28,14 +28,18 @@ const Dropdown = () => {
 
   const handleClose = (event: any) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      //onClick 이벤트 핸들러 쿼리날리기
-      //range = const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
-      //status = const url = "?status=active&status=closed";
       return;
     }
 
     setOpen(false);
   };
+
+  const getQuery = (e:any) => {
+    //onClick 이벤트 핸들러 쿼리날리기
+    //range = const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
+    //status = const url = "?status=active&status=closed";
+    console.log(e.target.key);
+  }
 
   function handleListKeyDown(event: React.KeyboardEvent) {
     if (event.key === "Tab") {
@@ -102,9 +106,9 @@ const Dropdown = () => {
                 >
                   {checkTab
                     ? Object.entries(progressValue).map(
-                        statusDropdown(handleClose)
+                        statusDropdown(handleClose, getQuery)
                       )
-                    : rangeValue.map(weekDropdown(handleClose))}
+                    : rangeValue.map(weekDropdown(handleClose, getQuery))}
                 </MenuList>
               </ClickAwayListener>
             </Paper>

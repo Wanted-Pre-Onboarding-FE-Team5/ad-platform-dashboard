@@ -3,19 +3,13 @@ import { totalAdStatusState, adListState } from "../store/atom";
 import { TotalAdStatusType, AdListDataType } from "../models/types";
 import { useRecoilValue } from "recoil";
 import { addDays, format } from "date-fns";
+import { getTotalAdStatusData, dataService } from "../api/api";
 
 export type DefaultDateType = { [key: string]: string };
 export type RangeDateType = { [key: string]: [string, string] };
 
-// type EndDateType = string | null;
-// type EndDateAndIdType = {
-//   id: number;
-//   endDate: EndDateType;
-// };
-
 const useDropdownItem = () => {
-  const totalAdStatus = useRecoilValue<TotalAdStatusType[]>(totalAdStatusState);
-  
+  //const totalAdStatus = useRecoilValue<TotalAdStatusType[]>(totalAdStatusState);
   //const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
 
   const getRangeData = () => {
@@ -23,8 +17,9 @@ const useDropdownItem = () => {
       startDate: "",
       endDate: "",
     };
-    const dateData = totalAdStatus
-      .map((data: TotalAdStatusType) => {
+    //db의 가장 처음 date와 가장 나중 date를 추출하는 작업 -> 실패해서 하드 코딩
+    const dateData = [{date:"2022-02-01"}, {date:"2022-04-20"}]
+      .map((data: DefaultDateType) => {
         return data.date;
       })
       .sort();
@@ -52,25 +47,7 @@ const useDropdownItem = () => {
 
     return rangeData;
   };
-  //endDate 이랑 id 가져오기 => endDate 입력시 자동 closed
-  //   const endDateAndId = adList.map((adListData: AdListDataType) => {
-  //     const template: EndDateAndIdType = {
-  //       id: -1,
-  //       endDate: "",
-  //     };
-  //     template.id = adListData.id;
-  //     template.endDate = adListData.endDate;
-  //     return template;
-  //   });
-
-  //   endDateAndId.map((item: EndDateAndIdType) =>
-  //     item.endDate === null
-  //       ? null
-  //       : console.log(
-  //           `patch써서 status상태를 closed로 바꿔주는 함수를 넣어주면됩니다. id는 item.id`
-  //         )
-  //   );
-
+  
   const getProgressState = () => ({
     all: "전체 광고",
     active: "진행 중",
