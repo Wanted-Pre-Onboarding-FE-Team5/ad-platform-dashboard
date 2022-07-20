@@ -22,8 +22,14 @@ export const useAdListModel = () => {
     // setAdList(response.data);
   };
 
-  const postAdItemById = async (id: number, data: AdListDataType) => {
-    return await adListRequest.post(`/${id}`, data);
+  const postAdItemById = async (data: AdListDataType) => {
+    await adListRequest
+      .post(`http://localhost:8000/ad-list`, data)
+      .then((response) => console.log(response.data))
+      // .then(() => getAdList(`?id=10`))
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return {
