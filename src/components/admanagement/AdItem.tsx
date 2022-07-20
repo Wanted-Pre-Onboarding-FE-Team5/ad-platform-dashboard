@@ -26,8 +26,6 @@ const AdItem = ({ aditem }: AdItemProps) => {
     params: number,
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    console.log("수정클릭");
-    console.log(params);
     putAdItemById(params, {
       id: params,
       adType: "web",
@@ -36,13 +34,10 @@ const AdItem = ({ aditem }: AdItemProps) => {
       status: "active",
       startDate: "2022-07-20 T00:00:00",
       endDate: null,
-      report: {
-        cost: 267144117,
-        convValue: 1157942685,
-        roas: 433,
-      },
+      cost: 267144117,
+      convValue: 1157942685,
+      roas: 433,
     });
-    // test();
   };
 
   const handleDeleteClick = (
@@ -52,22 +47,20 @@ const AdItem = ({ aditem }: AdItemProps) => {
     deleteAdList(params);
   };
   //put test
-  const test = () => {
-    putAdItemById(1, {
-      id: 1,
-      adType: "web",
-      title: "광고 7810",
-      budget: 7810,
-      status: "active",
-      startDate: "2020-10-19T00:00:00",
-      endDate: null,
-      report: {
-        cost: 267144117,
-        convValue: 1157942685,
-        roas: 433,
-      },
-    });
-  };
+  // const test = () => {
+  //   putAdItemById(1, {
+  //     id: 1,
+  //     adType: "web",
+  //     title: "광고 7810",
+  //     budget: 7810,
+  //     status: "active",
+  //     startDate: "2020-10-19T00:00:00",
+  //     endDate: null,
+  //     cost: 267144117,
+  //     convValue: 1157942685,
+  //     roas: 433,
+  //   });
+  // };
 
   return (
     <AditemBox
@@ -98,19 +91,19 @@ const AdItem = ({ aditem }: AdItemProps) => {
               </Row>
               <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
                 <TableCell>광고 수익률</TableCell>
-                <TableCell>{aditem.report.roas}%</TableCell>
+                <TableCell>{aditem.roas}%</TableCell>
               </Row>
               <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
                 <TableCell>매출</TableCell>
                 <TableCell>
-                  {Math.floor(aditem.report.convValue / 10000).toLocaleString()}
+                  {Math.floor(aditem.convValue / 10000).toLocaleString()}
                   만원
                 </TableCell>
               </Row>
               <Row style={{ borderTop: "1px solid rgba(224, 224, 224, 1)" }}>
                 <TableCell>광고 비용</TableCell>
                 <TableCell>
-                  {Math.floor(aditem.report.cost / 10000).toLocaleString()}
+                  {Math.floor(aditem.cost / 10000).toLocaleString()}
                   만원
                 </TableCell>
               </Row>

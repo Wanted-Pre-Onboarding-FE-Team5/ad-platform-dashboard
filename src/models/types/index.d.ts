@@ -35,14 +35,17 @@ export type AdListDataType = {
   status: string;
   startDate: string;
   endDate: string | null;
-  report: ReportType;
-};
-
-export type ReportType = {
+  // report: ReportType;
   cost: number;
   convValue: number;
   roas: number;
 };
+
+// export type ReportType = {
+//   cost: number;
+//   convValue: number;
+//   roas: number;
+// };
 
 export type TotalAdStatusType = {
   imp: number;

@@ -5,9 +5,14 @@ import styled from "@emotion/styled";
 import { useAdListModel } from "../models/useAdListModel";
 import AdList from "../components/admanagement/AdList";
 import AdCreateItem from "../components/admanagement/AdCreateItem";
+import { AdListDataType } from "../models/types";
+import { useRecoilState } from "recoil";
+import { adListState } from "../store/atom";
 
 const AdManagement = () => {
   const { putAdItemById } = useAdListModel();
+  const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
+  let createId = adList.length + 1;
 
   return (
     <Box
@@ -33,11 +38,8 @@ const AdManagement = () => {
           <Button variant="outlined">전체 광고</Button>{" "}
           {/* TODO: 전체 광고 버튼 셀렉트박스로 변경 예정 */}
           <AdCreateItem
-            onSubmit={function (form: {
-              id: number;
-              adType: string;
-              title: string;
-            }): void {
+            createId={createId}
+            onSubmit={function (form: AdListDataType): void {
               console.log(form);
             }}
           />
