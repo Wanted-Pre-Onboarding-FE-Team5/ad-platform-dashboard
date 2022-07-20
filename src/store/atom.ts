@@ -4,19 +4,10 @@ import {
   getTotalAdStatusData,
   getChannelStatusData,
 } from "../api/api";
-
-export const dateState = atom({
-  key: 'dateState',
-  default: ['2022-02-01', '2022-02-07'],
-});
-
-export const progressState = atom({
-  key: 'progressState',
-  default: 'active',
-});
+import { v1 } from "uuid";
 
 export const adListSelector = selector({
-  key: "adListSelector",
+  key: `uniqueKey/${v1()}`,
   get: async () => {
     const response = await dataService("adList").get("");
     return response.data;
@@ -24,26 +15,26 @@ export const adListSelector = selector({
 });
 
 export const adListState = atom({
-  key: 'adListState',
+  key: `uniqueKey/${v1()}`,
   default: adListSelector,
 });
 
 const channelStateSelector = selector({
-  key: "channelStateSelector",
+  key: `uniqueKey/${v1()}`,
   get: () => getChannelStatusData(dataService("channelStatus"), ""),
 });
 
 export const channelState = atom({
-  key: 'channelState',
+  key: `uniqueKey/${v1()}`,
   default: channelStateSelector,
 });
 
-const totalAdStatusSelector = selector({
-  key: "totalAdStatusSelector",
+export const totalAdStatusSelector = selector({
+  key: `uniqueKey/${v1()}`,
   get: () => getTotalAdStatusData(dataService("totalAdStatus"), ""),
 });
 
 export const totalAdStatusState = atom({
-  key: 'totalAdStatusState',
+  key: `uniqueKey/${v1()}`,
   default: totalAdStatusSelector,
 });

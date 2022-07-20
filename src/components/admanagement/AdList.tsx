@@ -3,8 +3,8 @@ import AdItem from "./AdItem";
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
 import { adListState } from "../../store/atom";
-import { useAdListModel } from "../../models/useAdListModel";
 import { AdListDataType } from "../../models/types";
+import { useAdListModel } from "../../models/useAdListModel";
 
 export interface IProps {
   props: { id: number; budget: number };
@@ -13,17 +13,16 @@ export interface IProps {
 const AdList = () => {
   const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
   const { getAdList } = useAdListModel();
-  React.useEffect(() => {
-    getAdList(""); //TODO : bug 발생!!!!
 
-    // adListRequest.get_ad("").then((response) => {
-    //   setAdList(response.data);
-    // });
+  const query : string = "?status=active&status=closed";
+  React.useEffect(() => { //(url : string = query)
+    getAdList().then((data)=>setAdList(data))
+    .catch(() => console.log("data dispatch error"));
   }, []);
-
+  
   return (
     <AdListContainer>
-      {adList.map((aditem: AdListDataType) => (
+      {adList?.map((aditem: AdListDataType) => (
         <AdItem key={aditem.id} aditem={aditem} />
       ))}
     </AdListContainer>
