@@ -17,22 +17,38 @@ import { AdListDataType } from "../../models/types";
 
 type AdItemProps = {
   aditem: AdListDataType;
-}
+};
 
-const AdItem = ({aditem} : AdItemProps) => {
+const AdItem = ({ aditem }: AdItemProps) => {
   const { deleteAdList, putAdItemById } = useAdListModel();
 
-  const handleModifyClick = () => {
+  const handleModifyClick = (
+    params: number,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     console.log("수정클릭");
-    test();
+    console.log(params);
+    putAdItemById(params, {
+      id: params,
+      adType: "web",
+      title: "수정테스트",
+      budget: 7773,
+      status: "active",
+      startDate: "2022-07-20 T00:00:00",
+      endDate: null,
+      report: {
+        cost: 267144117,
+        convValue: 1157942685,
+        roas: 433,
+      },
+    });
+    // test();
   };
 
   const handleDeleteClick = (
     params: number,
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    console.log("삭제클릭");
-    console.log(params);
     deleteAdList(params);
   };
   //put test
@@ -52,7 +68,7 @@ const AdItem = ({aditem} : AdItemProps) => {
       },
     });
   };
- 
+
   return (
     <AditemBox
       key={aditem.id}
@@ -107,7 +123,9 @@ const AdItem = ({aditem} : AdItemProps) => {
           size="small"
           variant="outlined"
           color="inherit"
-          onClick={handleModifyClick}
+          onClick={(e) => {
+            handleModifyClick(aditem.id, e);
+          }}
         >
           수정하기
         </Button>
@@ -157,4 +175,4 @@ const ButtonContainer = styled(CardActions)`
     color: black;
     border: 1px solid rgba(224, 224, 224, 1);
   }
-`
+`;
