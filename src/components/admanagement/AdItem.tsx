@@ -141,14 +141,13 @@ export default AdItem;
 
 const AditemBox = styled(DefaultCard)`
   margin: 10px 10px;
-
+  width: 260px;
   box-sizing: border-box;
 
   &:hover {
     border: 1px solid #2a76d2;
     cursor: pointer;
   }
-  /* TODO: 모바일 사이즈 해야함 */
 `;
 
 const Row = styled(TableRow)`

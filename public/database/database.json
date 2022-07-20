@@ -5132,19 +5132,18 @@
       "title": "첫번째",
       "budget": 7773,
       "status": "active",
-      "startDate": "2022-07-20 T00:00:00",
+      "startDate": "2022-07-20",
       "endDate": null,
       "cost": 267144117,
       "convValue": 1157942685,
       "roas": 433
-    },
-    {
+    }, {
       "id": 2,
       "adType": "web",
       "title": "두번째",
-      "budget": 7773,
+      "budget": 1234,
       "status": "active",
-      "startDate": "2022-07-20 T00:00:00",
+      "startDate": "2022-07-20",
       "endDate": null,
       "cost": 267144117,
       "convValue": 1157942685,
@@ -5152,27 +5151,15 @@
     },
     {
       "id": 3,
-      "adType": "",
-      "title": "id=3test",
-      "budget": "500000",
-      "status": "진행중",
-      "startDate": "20220722",
-      "endDate": "",
-      "cost": "300000",
-      "convValue": "300000",
-      "roas": "500"
-    },
-    {
-      "id": 4,
-      "adType": "",
-      "title": "id=4or5",
-      "budget": "30000",
-      "status": "test",
-      "startDate": "20221020",
-      "endDate": "",
-      "cost": "3000000",
-      "convValue": "30000000",
-      "roas": "30"
+      "adType": "web",
+      "title": "세번째",
+      "budget": 7773,
+      "status": "active",
+      "startDate": "2022-07-20",
+      "endDate": null,
+      "cost": 267144117,
+      "convValue": 1157942685,
+      "roas": 433
     }
   ]
 }

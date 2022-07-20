@@ -2,6 +2,8 @@ import React from "react";
 import { Typography } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import styled from "@emotion/styled";
+import Input from "@mui/material/Input";
+
 import {
   Button,
   Card as DefaultCard,
@@ -17,8 +19,6 @@ import {
 import { Box } from "@mui/system";
 import { useAdListModel } from "../../models/useAdListModel";
 import { AdListDataType } from "../../models/types";
-import { useRecoilState } from "recoil";
-import { adListState } from "../../store/atom";
 
 const style = {
   position: "absolute" as "absolute",
@@ -53,7 +53,7 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
     convValue: 0,
     roas: 0,
   });
-  const { adList, postAdItemById } = useAdListModel();
+  const { postAdItemById } = useAdListModel();
   const {
     adType,
     title,
@@ -119,11 +119,12 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
               <form onSubmit={handleSubmit}>
                 <CardHeader
                   title={
-                    <input
+                    <Input
                       name="title"
                       value={title}
                       onChange={onChange}
-                      placeholder="제목"
+                      placeholder="광고 제목"
+                      required
                     />
                   }
                   sx={{ pb: 0 }}
@@ -140,11 +141,11 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
                           <TableCell>상태</TableCell>
                           <TableCell>
                             {/* {dailyAd.status === "active" ? "진행중" : "종료"} */}
-                            <input
+                            <Input
                               name="status"
                               value={status}
                               onChange={onChange}
-                              placeholder="status"
+                              required
                             />
                           </TableCell>
                         </Row>
@@ -157,11 +158,12 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
 
                           <TableCell>
                             {" "}
-                            <input
+                            <Input
                               name="startDate"
+                              type="date"
                               value={startDate}
                               onChange={onChange}
-                              placeholder="startDate"
+                              required
                             />
                           </TableCell>
                         </Row>
@@ -173,11 +175,11 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
                           <TableCell>일 희망 예산</TableCell>
                           <TableCell>
                             {" "}
-                            <input
+                            <Input
                               name="budget"
                               value={budget}
                               onChange={onChange}
-                              placeholder="budget"
+                              required
                             />
                           </TableCell>
                         </Row>
@@ -188,11 +190,11 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
                         >
                           <TableCell>광고 수익률</TableCell>
                           <TableCell>
-                            <input
+                            <Input
                               name="roas"
                               value={roas}
                               onChange={onChange}
-                              placeholder="roas"
+                              required
                             />
                             %
                           </TableCell>
@@ -204,11 +206,11 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
                         >
                           <TableCell>매출</TableCell>
                           <TableCell>
-                            <input
+                            <Input
                               name="convValue"
                               value={convValue}
                               onChange={onChange}
-                              placeholder="convValue"
+                              required
                             />
                           </TableCell>
                         </Row>
@@ -219,11 +221,11 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
                         >
                           <TableCell>광고 비용</TableCell>
                           <TableCell>
-                            <input
+                            <Input
                               name="cost"
                               value={cost}
                               onChange={onChange}
-                              placeholder="cost"
+                              required
                             />{" "}
                           </TableCell>
                         </Row>
@@ -232,7 +234,7 @@ const AdCreateItem = ({ onSubmit, createId }: MyFormProps) => {
                   </TableContainer>
                 </CardContent>
 
-                <button type="submit">등록</button>
+                <Button type="submit">등록</Button>
               </form>
             </AditemBox>
           </Typography>
@@ -246,7 +248,7 @@ export default AdCreateItem;
 
 const AditemBox = styled(DefaultCard)`
   margin: 10px 10px;
-
+padding-bottom: 20px;
   box-sizing: border-box;
 
   &:hover {
@@ -256,6 +258,7 @@ const AditemBox = styled(DefaultCard)`
 `;
 
 const Row = styled(TableRow)`
+  border: none;
   & > td:first-of-type {
     padding-left: 0;
     color: gray;
