@@ -1,20 +1,21 @@
 import { atom, selector } from "recoil";
+import { TotalAdStatusType } from "../models/types";
 import { addDays, format } from "date-fns";
-import { totalAdStatusSelector } from "./atom";
 import { v1 } from "uuid";
+import { totalAdStatusState } from "./atom";
 
 export type DefaultDateType = { [key: string]: string };
 
 const getDateDefault = selector({
   key: `uniqueKey/${v1()}`,
   get: ({ get }) => {
-    const totalAdStatusData = get(totalAdStatusSelector);
+    const totalAdStatusData = get(totalAdStatusState);
     const defaultDate: DefaultDateType = {
       startDate: "",
       endDate: "",
     };
     const dateData = totalAdStatusData
-      .map((data) => {
+      .map((data: TotalAdStatusType) => {
         return data.date;
       })
       .sort();
@@ -36,7 +37,7 @@ const getDateRange = selector({
     const lastDate: Date = new Date(defaultDate.endDate);
     let startDate: Date = new Date(defaultDate.startDate);
 
-    const weekData : DefaultDateType[] = [];
+    const weekData: DefaultDateType[] = [];
     while (startDate <= lastDate) {
       const range: DefaultDateType = {
         start: "",

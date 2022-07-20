@@ -14,13 +14,13 @@ export const weekDropdown = (handleClose: any) => {
 };
 
 export const statusDropdown = (handleClose: any) => {
-  return (status: string, index: number) => (
+  return (status: [string,string], index: number) => (
     <MenuItem
       sx={{ zIndex: 10, backgroundColor: "white" }}
       onClick={handleClose}
       key={index}
     >
-      {Object.values(status)}
+      {status[1]}
     </MenuItem>
   );
 };

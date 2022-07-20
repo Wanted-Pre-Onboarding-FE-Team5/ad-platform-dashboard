@@ -23,12 +23,9 @@ const TotalAdStatus = () => {
     useRecoilState<TotalAdStatusType[]>(totalAdStatusState);
   const [weeklyData, setWeeklyData] = React.useState<string[]>([]);
 
-  // 일주일치 데이터 하드 코딩 2022-02-01 ~ 2022-02-07
-  // "?date_gte=2022-02-01&date_lte=2022-02-07"
-  //const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
-
+  const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
   React.useEffect(() => {
-    getTotalAdStatusData(dataService("totalAdStatus"),"")
+    getTotalAdStatusData(dataService("totalAdStatus"),"") //url
       .then((data) => setTotalAdStatus(data))
       .catch(() => console.log("data dispatch error"));
   }, [setTotalAdStatus]);

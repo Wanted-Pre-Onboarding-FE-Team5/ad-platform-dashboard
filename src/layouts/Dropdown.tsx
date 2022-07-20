@@ -20,7 +20,7 @@ const Dropdown = () => {
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const rangeValue: DefaultDateType[] = useRecoilValue(dateRange);
   const progressValue : DefaultProgressType = useRecoilValue(progressState);
-  const checkTab = window.location.href.includes("/ad"); //광고관리=true,대시보드=false
+  const checkTab = window.location.href.includes("/ad");
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -28,6 +28,9 @@ const Dropdown = () => {
 
   const handleClose = (event: any) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      //onClick 이벤트 핸들러 쿼리날리기 
+      //range = const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
+      //status = const url = "?status=active&status=closed";
       return;
     }
 
@@ -98,7 +101,7 @@ const Dropdown = () => {
                   sx={{ height: "120px" }}
                 >
                   {checkTab
-                    ? Object.values(progressValue).map(statusDropdown(handleClose))
+                    ? Object.entries(progressValue).map(statusDropdown(handleClose))
                     : rangeValue.map(weekDropdown(handleClose))}
                 </MenuList>
               </ClickAwayListener>

@@ -1,7 +1,7 @@
 import { atom, selector } from "recoil";
 import { v1 } from "uuid";
-import { adListSelector } from "./atom";
 import { AdListDataType } from "../models/types";
+import { adListState } from "./atom";
 
 type EndDateType = string | null;
 type EndDateAndIdType = {
@@ -12,7 +12,7 @@ type EndDateAndIdType = {
 const getEndDateAndId = selector({
   key: `uniqueKey/${v1()}`,
   get: ({ get }) => {
-    const adListData = get(adListSelector);
+    const adListData = get(adListState);
     const getData = adListData.map((adList: AdListDataType) => {
       const template: EndDateAndIdType = {
         id: -1,
