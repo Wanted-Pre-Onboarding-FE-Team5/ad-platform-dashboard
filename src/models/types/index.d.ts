@@ -1,18 +1,3 @@
-export type TotalAdStatusType = {
-  imp: number;
-  click: number;
-  cost: number;
-  conv: number;
-  convValue: number;
-  ctr: number;
-  cvr: number;
-  cpc: number;
-  cpa: number;
-  roas: number;
-  date: string;
-  name?: string;
-};
-
 export type ChannelStatusType = {
   channel: string;
   date: string;
@@ -35,17 +20,11 @@ export type AdListDataType = {
   status: string;
   startDate: string;
   endDate: string | null;
-  // report: ReportType;
   cost: number;
   convValue: number;
   roas: number;
 };
 
-// export type ReportType = {
-//   cost: number;
-//   convValue: number;
-//   roas: number;
-// };
 
 export type TotalAdStatusType = {
   imp: number;
@@ -59,18 +38,4 @@ export type TotalAdStatusType = {
   cpa: number;
   roas: number;
   date: string;
-};
-
-export type ChannelStatusType = {
-  channel: string;
-  date: string;
-  imp: number;
-  click: number;
-  cost: number;
-  convValue: number;
-  ctr: number;
-  cvr: number;
-  cpc: number;
-  cpa: number;
-  roas: number;
 };

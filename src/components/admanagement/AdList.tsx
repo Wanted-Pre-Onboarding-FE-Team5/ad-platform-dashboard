@@ -14,11 +14,11 @@ const AdList = () => {
   const [adList, setAdList] = useRecoilState<AdListDataType[]>(adListState);
   const { getAdList } = useAdListModel();
 
-  const query : string = "?status=active&status=closed";
-  React.useEffect(() => { //(url : string = query)
-    getAdList().then((data)=>setAdList(data))
-    .catch(() => console.log("data dispatch error"));
-  }, []);
+  // const query : string = "?status=active&status=closed";
+  // React.useEffect(() => { //(url : string = query)
+  //   getAdList().then((data)=>setAdList(data))
+  //   .catch(() => console.log("data dispatch error"));
+  // }, []);
   
   return (
     <AdListContainer>
