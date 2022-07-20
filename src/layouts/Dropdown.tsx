@@ -1,11 +1,9 @@
 import React from "react";
 import { Button, Box, Grow, Paper, Popper, MenuList } from "@mui/material";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { dateRange } from "../store/dateAtom";
-import { progressState } from "../store/statusAtom";
-import { useRecoilValue } from "recoil";
 import { weekDropdown, statusDropdown } from "./DropdownItem";
-import { DefaultDateType } from "../store/dateAtom";
+import useDropdownItem from "../models/useDropdownItem";
+import { RangeDateType } from "../models/useDropdownItem";
 
 const dropdownHeight = "12rem";
 
@@ -18,9 +16,11 @@ export type DefaultProgressType = {
 const Dropdown = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-  const rangeValue: DefaultDateType[] = useRecoilValue(dateRange);
-  const progressValue : DefaultProgressType = useRecoilValue(progressState);
   const checkTab = window.location.href.includes("/ad");
+
+  const { getRangeData, getProgressState } = useDropdownItem();
+  const rangeValue :RangeDateType[] = getRangeData();
+  const progressValue = getProgressState();
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -28,7 +28,7 @@ const Dropdown = () => {
 
   const handleClose = (event: any) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      //onClick 이벤트 핸들러 쿼리날리기 
+      //onClick 이벤트 핸들러 쿼리날리기
       //range = const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
       //status = const url = "?status=active&status=closed";
       return;
@@ -72,7 +72,7 @@ const Dropdown = () => {
         onClick={handleToggle}
         sx={{ width: "100%" }}
       >
-        {checkTab ? `전체 광고` : `${rangeValue[0].start}~${rangeValue[0].end}`}
+        {checkTab ? `전체 광고` : `${rangeValue[0].start[1]}~${rangeValue[0].end[1]}`}
       </Button>
       <Popper
         open={open}
@@ -101,7 +101,9 @@ const Dropdown = () => {
                   sx={{ height: "120px" }}
                 >
                   {checkTab
-                    ? Object.entries(progressValue).map(statusDropdown(handleClose))
+                    ? Object.entries(progressValue).map(
+                        statusDropdown(handleClose)
+                      )
                     : rangeValue.map(weekDropdown(handleClose))}
                 </MenuList>
               </ClickAwayListener>

@@ -16,8 +16,6 @@ import { calculateSum, calculateSumCallback } from "../../../models/useFormatMod
 import { dataService, getTotalAdStatusData } from "../../../api/api";
 import LegendItem from "./LegendItem";
 
-//TODO map key 처리
-//TODO 데이터 불러오는 부분 hooks 처리해서 반환 => grid랑 chart 컴포넌트 분리하기
 const TotalAdStatus = () => {
   const [totalAdStatus, setTotalAdStatus] =
     useRecoilState<TotalAdStatusType[]>(totalAdStatusState);
@@ -25,7 +23,7 @@ const TotalAdStatus = () => {
 
   const url = "?date_gte=2022-02-01&date_lte=2022-02-07";
   React.useEffect(() => {
-    getTotalAdStatusData(dataService("totalAdStatus"),"") //url
+    getTotalAdStatusData(dataService("totalAdStatus"),"?date_gte=2022-02-01&date_lte=2022-02-07")
       .then((data) => setTotalAdStatus(data))
       .catch(() => console.log("data dispatch error"));
   }, [setTotalAdStatus]);
