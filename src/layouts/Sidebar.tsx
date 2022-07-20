@@ -27,28 +27,27 @@ const Sidebar = () => {
       anchor="left"
     >
       <Toolbar />
-      <List>
-        <ListItem>광고 플랫폼 대시보드</ListItem>
-      </List>
       <Toolbar />
       <Divider />
       <List>
         <ListItem sx={{ fontSize: "12px" }}>서비스</ListItem>
         <ListItem>
           <Button
-            sx={{ border: "1px solid black", width: "100%", height: "3rem" }}
+            sx={{ border: "1px solid #eeeee", width: "100%", height: "3rem" }}
+            disabled
           >
-            뭔지모르는 버튼
+            서비스
           </Button>
         </ListItem>
       </List>
+      <Toolbar />
       <List>
         <ListItem sx={{ fontSize: "12px" }}>광고센터</ListItem>
         <List sx={{ width:"100%" }}>
             <ListItem sx={{ display: "flex", flexDirection: "column" }}>
                 <Button
                   sx={{
-                    border: "1px solid black",
+                    border: "1px solid #eeeeee",
                     height: "3rem",
                     width: "100%",
                   }}
@@ -58,7 +57,7 @@ const Sidebar = () => {
                 </Button>
                 <Button
                   sx={{
-                    border: "1px solid black",
+                    border: "1px solid #eeeeee",
                     height: "3rem",
                     width: "100%",
                     mt:"1rem"
@@ -70,6 +69,7 @@ const Sidebar = () => {
             </ListItem>
         </List>
       </List>
+      <Divider />
     </Drawer>
   );
 };

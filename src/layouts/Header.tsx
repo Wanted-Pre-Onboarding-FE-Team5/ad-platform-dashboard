@@ -31,10 +31,10 @@ const Header = (props: HeaderPropsType) => {
           color='inherit'
           sx={{
             position: 'absolute',
-            top: '1rem',
-            left: '1rem',
-            width: '2rem',
-            height: '2rem',
+            top: '0.2em',
+            left: '0.2rem',
+            width: '3rem',
+            height: '3rem',
             zIndex: 20,
             color: '#59656b',
           }}

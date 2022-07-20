@@ -56,7 +56,6 @@ export type TotalAdStatusType = {
   cpa: number;
   roas: number;
   date: string;
-  name?: string; //안쓸거면 지우기
 };
 
 export type ChannelStatusType = {
