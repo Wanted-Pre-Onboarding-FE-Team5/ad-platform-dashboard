@@ -6,6 +6,7 @@ import { AdListDataType } from "../models/types";
 import { useRecoilState } from "recoil";
 import { adListState } from "../store/atom";
 import Dropdown from "../layouts/Dropdown";
+import { useAdListModel } from "../models/useAdListModel";
 
 const AdManagement = () => {
   const { putAdItemById } = useAdListModel();
