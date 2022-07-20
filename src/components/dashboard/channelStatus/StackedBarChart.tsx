@@ -67,8 +67,6 @@ const StackedBarChart = () => {
             bottom: 20,
           }}
         >
-          {/* <CartesianGrid strokeDasharray='1 0' /> */}
-          {/* TODO X축이 각 매체의 광고비, 매출, 노출수, 클릭 수, 전환수 가 되게 하기*/}
           <XAxis dataKey='name' />
           <YAxis />
           <Tooltip />
