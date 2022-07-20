@@ -14,7 +14,9 @@ const Dashboard = () => {
         width: `calc(100vw - 240px)`,
       }}
     >
-      <Toolbar>대시 보드 <Dropdown /></Toolbar>     
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", fontSize:"1.5rem", fontWeight:"bold" }}>
+        대시보드 <Dropdown />
+      </Toolbar>
       <TotalAdStatus />
       <ChannelStatus />
     </Box>

@@ -35,14 +35,17 @@ export type AdListDataType = {
   status: string;
   startDate: string;
   endDate: string | null;
-  report: ReportType;
-};
-
-export type ReportType = {
+  // report: ReportType;
   cost: number;
   convValue: number;
   roas: number;
 };
+
+// export type ReportType = {
+//   cost: number;
+//   convValue: number;
+//   roas: number;
+// };
 
 export type TotalAdStatusType = {
   imp: number;
@@ -56,7 +59,6 @@ export type TotalAdStatusType = {
   cpa: number;
   roas: number;
   date: string;
-  name?: string; //안쓸거면 지우기
 };
 
 export type ChannelStatusType = {

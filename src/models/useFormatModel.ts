@@ -7,6 +7,13 @@ export enum CashUnits {
   hundredmillion = 100000000,
 }
 
+type WeeklySumType = {
+  [key:string]:number
+}
+type ParameterType = {
+  [key:number]:WeeklySumType
+}
+
 const essentialStatus: string[] = [
   "roas",
   "click",
@@ -15,10 +22,6 @@ const essentialStatus: string[] = [
   "conv",
   "convValue",
 ];
-
-type WeeklySumType = {
-  [key:string]:number
-}
 
 export const calculateSum = (totalAdStatus: TotalAdStatusType[], callback :any) : string[] => {
   const weeklySum : WeeklySumType[] = [];
@@ -69,10 +72,6 @@ const getFormatBySum = (statusSum:WeeklySumType) : string|undefined => {
         break;
     }
 };
-
-type ParameterType = {
-  [key:number]:WeeklySumType
-}
 
 export const calculateSumCallback = (weeklySum:ParameterType) => {
   const weeklyAdStatus : (string|undefined)[] = [];
